@@ -1,0 +1,6 @@
+{
+  "name": "VIBEBOX",
+  "description": "Press Play. Let the Music Flow. Continuous Auto-DJ music player with real dual-deck Web Audio crossfading, party modes, and mood radios.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

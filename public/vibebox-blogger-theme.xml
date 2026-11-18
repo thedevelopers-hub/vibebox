@@ -1,0 +1,2152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  <meta charset='UTF-8'/>
+  <meta content='width=device-width, initial-scale=1.0' name='viewport'/>
+  <meta content='#07080D' name='theme-color'/>
+  <b:include data='blog' name='all-head-content'/>
+  <b:if cond='data:view.isHomepage'>
+    <title><data:blog.title.escaped/> &#8211; Real Songs, Smart Auto-DJ &amp; Party Music</title>
+  <b:elseif cond='data:view.isError'/>
+    <title>404 Not Found | <data:blog.title.escaped/></title>
+  <b:else/>
+    <title><data:view.title.escaped/> | <data:blog.title.escaped/></title>
+  </b:if>
+  <link href='https://fonts.googleapis.com' rel='preconnect'/>
+  <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+  <link href='https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&amp;family=Outfit:wght@500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap' rel='stylesheet'/>
+
+  <b:skin><![CDATA[
+    :root {
+      --vb-bg: #07080D;
+      --vb-surface: #0D101B;
+      --vb-surface-2: #121626;
+      --vb-border: rgba(255, 255, 255, 0.10);
+      --vb-text: #F8FAFC;
+      --vb-muted: #94A3B8;
+      --vb-dim: #64748B;
+      --vb-purple: #9333EA;
+      --vb-purple-bright: #C084FC;
+      --vb-blue: #2563EB;
+      --vb-blue-bright: #38BDF8;
+      --vb-pink: #EC4899;
+      --vb-font-display: 'Outfit', system-ui, -apple-system, sans-serif;
+      --vb-font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --vb-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html {
+      background-color: var(--vb-bg);
+      color: var(--vb-text);
+      font-family: var(--vb-font-sans);
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--vb-bg);
+      color: var(--vb-text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: 0; background: transparent; color: inherit; }
+    input { font-family: inherit; }
+    h1, h2, h3, .vb-display { font-family: var(--vb-font-display); margin: 0; }
+    .vb-mono { font-family: var(--vb-font-mono); font-variant-numeric: tabular-nums; }
+    :focus-visible { outline: 2px solid var(--vb-blue-bright); outline-offset: 2px; }
+
+    /* Top Header */
+    .vb-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      border-bottom: 1px solid var(--vb-border);
+      background: rgba(7, 8, 13, 0.90);
+      backdrop-filter: blur(12px);
+    }
+    .vb-header-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 0.875rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    .vb-logo {
+      font-family: var(--vb-font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      background: linear-gradient(90deg, #C084FC, #A855F7, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .vb-nav {
+      display: none;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--vb-muted);
+    }
+    .vb-nav-btn {
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding: 0.25rem 0;
+      transition: color 150ms ease;
+    }
+    .vb-nav-btn:hover, .vb-nav-btn.is-active { color: #FFFFFF; }
+    .vb-nav-btn.is-active {
+      text-decoration: underline;
+      text-decoration-color: #A855F7;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 8px;
+    }
+    .vb-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+    .vb-search-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.875rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.05);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      white-space: nowrap;
+    }
+    .vb-search-btn:hover { border-color: #A855F7; background: rgba(255,255,255,0.10); }
+    .vb-menu-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.45rem 0.65rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(255,255,255,0.16);
+      color: #FFFFFF;
+    }
+    .vb-mobile-drawer {
+      display: none;
+      border-top: 1px solid var(--vb-border);
+      background: #0B0D15;
+      padding: 1rem 1.25rem;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .vb-mobile-drawer.is-open { display: flex; }
+    .vb-mobile-drawer button, .vb-mobile-drawer a {
+      text-align: left;
+      padding: 0.4rem 0;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #E2E8F0;
+    }
+
+    /* Main Container */
+    .vb-main {
+      flex: 1;
+      width: 100%;
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+
+    /* Hero Stage */
+    .vb-hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      border: 1px solid var(--vb-border);
+      background: linear-gradient(135deg, #121324 0%, #0B0D16 55%, #080A12 100%);
+      padding: 1.5rem;
+    }
+    .vb-glow-1, .vb-glow-2 {
+      position: absolute;
+      width: 18rem;
+      height: 18rem;
+      border-radius: 999px;
+      pointer-events: none;
+      filter: blur(56px);
+    }
+    .vb-glow-1 { top: -6rem; right: -6rem; background: rgba(147, 51, 234, 0.22); }
+    .vb-glow-2 { bottom: -6rem; left: -6rem; background: rgba(37, 99, 235, 0.20); }
+    .vb-hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .vb-hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    .vb-art {
+      position: relative;
+      flex-shrink: 0;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: linear-gradient(135deg, #9333EA, #2563EB);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .vb-art.is-playing {
+      border-color: rgba(168, 85, 247, 0.75);
+      box-shadow: 0 12px 32px rgba(147, 51, 234, 0.32);
+    }
+    .vb-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vb-art-sm { width: 3rem; height: 3rem; border-radius: 0.5rem; font-size: 0.75rem; }
+    .vb-art-md { width: 4rem; height: 4rem; border-radius: 0.75rem; font-size: 0.875rem; }
+    .vb-art-xl { width: 14rem; height: 14rem; border-radius: 1.5rem; font-size: 2rem; }
+    .vb-art-fallback { font-family: var(--vb-font-display); font-weight: 700; color: rgba(255,255,255,0.9); align-items: center; justify-content: center; }
+
+    .vb-kicker {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--vb-blue-bright);
+    }
+    .vb-hero-title {
+      margin-top: 0.5rem;
+      font-size: 2rem;
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+    }
+    .vb-hero-sub {
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      color: #CBD5E1;
+    }
+    .vb-official-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--vb-blue-bright);
+    }
+    .vb-official-link:hover { text-decoration: underline; }
+
+    .vb-btn-row {
+      margin-top: 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .vb-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.85rem 1.65rem;
+      border-radius: 0.75rem;
+      background: linear-gradient(90deg, #9333EA, #2563EB);
+      color: #FFFFFF;
+      font-size: 0.875rem;
+      font-weight: 700;
+      box-shadow: 0 10px 24px rgba(147, 51, 234, 0.32);
+      white-space: nowrap;
+      transition: filter 150ms ease, transform 120ms ease;
+    }
+    .vb-btn-primary:hover { filter: brightness(1.1); }
+    .vb-btn-primary:active { transform: scale(0.97); }
+    .vb-btn-sec {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.85rem 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.05);
+      color: #FFFFFF;
+      font-size: 0.875rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .vb-btn-sec:hover { background: rgba(255,255,255,0.11); }
+    .vb-btn-sec.is-on {
+      border-color: var(--vb-blue-bright);
+      background: rgba(37, 99, 235, 0.22);
+    }
+
+    .vb-engine-switch {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--vb-muted);
+    }
+    .vb-engine-switch button { font-weight: 600; color: var(--vb-muted); }
+    .vb-engine-switch button.is-active {
+      color: #FFFFFF;
+      text-decoration: underline;
+      text-decoration-color: #38BDF8;
+      text-underline-offset: 4px;
+    }
+
+    /* Visualizer */
+    .vb-vis-box {
+      position: relative;
+      height: 13.5rem;
+      overflow: hidden;
+      border-radius: 1rem;
+      border: 1px solid var(--vb-border);
+      background: #0B0D15;
+    }
+    .vb-vis-canvas { width: 100%; height: 100%; display: block; }
+    .vb-vis-caption {
+      position: absolute;
+      bottom: 0.6rem;
+      left: 0.85rem;
+      font-size: 0.7rem;
+      color: var(--vb-muted);
+      pointer-events: none;
+    }
+    .vb-vis-modes {
+      margin-top: 0.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .vb-vis-mode-btn {
+      padding: 0.38rem 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--vb-border);
+      background: rgba(255,255,255,0.05);
+      color: var(--vb-muted);
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .vb-vis-mode-btn.is-active {
+      border-color: transparent;
+      background: linear-gradient(90deg, #9333EA, #2563EB);
+      color: #FFFFFF;
+    }
+
+    /* Section Headings & Grids */
+    .vb-section { margin-top: 3rem; }
+    .vb-section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .vb-section-head h2 { font-size: 1.5rem; font-weight: 700; color: #FFFFFF; }
+    .vb-section-head p { margin: 0.3rem 0 0; font-size: 0.875rem; color: var(--vb-muted); }
+    .vb-link-more { font-size: 0.875rem; font-weight: 600; color: var(--vb-blue-bright); white-space: nowrap; }
+    .vb-link-more:hover { color: #FFFFFF; }
+
+    .vb-grid-5 {
+      margin-top: 1.25rem;
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .vb-grid-4 {
+      margin-top: 1.25rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.875rem;
+    }
+    .vb-grid-3 {
+      margin-top: 0.875rem;
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .vb-card {
+      border-radius: 1rem;
+      border: 1px solid var(--vb-border);
+      background: var(--vb-surface);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+    .vb-card:hover { border-color: rgba(255,255,255,0.24); }
+    .vb-card.is-active {
+      border-color: #A855F7;
+      box-shadow: 0 10px 26px rgba(147, 51, 234, 0.22);
+    }
+    .vb-card-row { flex-direction: row; align-items: center; gap: 0.875rem; }
+    .vb-card-title { font-family: var(--vb-font-display); font-size: 1rem; font-weight: 700; color: #FFFFFF; }
+    .vb-card-sub {
+      margin-top: 0.25rem;
+      font-size: 0.75rem;
+      color: var(--vb-muted);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .vb-card-meta { margin-top: 0.7rem; font-size: 0.7rem; color: var(--vb-dim); }
+
+    .vb-play-circle {
+      width: 2.35rem;
+      height: 2.35rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 150ms ease;
+    }
+    .vb-play-circle:hover { background: linear-gradient(90deg, #9333EA, #2563EB); }
+
+    /* Track Rows */
+    .vb-tracklist {
+      margin-top: 1.25rem;
+      border-radius: 1rem;
+      border: 1px solid var(--vb-border);
+      background: var(--vb-surface);
+      overflow: hidden;
+    }
+    .vb-track-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--vb-border);
+      transition: background 150ms ease;
+    }
+    .vb-track-row:last-child { border-bottom: 0; }
+    .vb-track-row:hover { background: rgba(255,255,255,0.035); }
+    .vb-track-row.is-current { background: rgba(147, 51, 234, 0.14); }
+    .vb-track-left { display: flex; align-items: center; gap: 0.875rem; min-width: 0; flex: 1; }
+    .vb-track-num { width: 1.5rem; flex-shrink: 0; font-size: 0.75rem; color: var(--vb-dim); }
+    .vb-track-info { min-width: 0; flex: 1; }
+    .vb-track-title {
+      display: block;
+      width: 100%;
+      text-align: left;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .vb-track-row.is-current .vb-track-title { color: var(--vb-purple-bright); }
+    .vb-track-artist {
+      font-size: 0.75rem;
+      color: #CBD5E1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .vb-track-meta {
+      margin-top: 0.15rem;
+      font-size: 0.7rem;
+      color: var(--vb-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .vb-track-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding-left: 2.35rem;
+      flex-shrink: 0;
+    }
+    .vb-track-play-btn {
+      padding: 0.4rem 0.8rem;
+      border-radius: 0.5rem;
+      background: rgba(255,255,255,0.10);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+    .vb-track-play-btn:hover { background: linear-gradient(90deg, #9333EA, #2563EB); }
+
+    /* Search & Forms */
+    .vb-input-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: var(--vb-surface);
+      padding: 0.85rem 1rem;
+    }
+    .vb-input-box:focus-within { border-color: #A855F7; }
+    .vb-input-box input, .vb-text-input {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: #FFFFFF;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .vb-text-input {
+      border-radius: 0.6rem;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.05);
+      padding: 0.55rem 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    /* Blogger Posts & Pages */
+    .vb-blog-wrap { margin-top: 2.5rem; }
+    .vb-post-card {
+      border-radius: 1.25rem;
+      border: 1px solid var(--vb-border);
+      background: var(--vb-surface);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .vb-post-title { font-size: 1.75rem; font-weight: 800; color: #FFFFFF; line-height: 1.2; }
+    .vb-post-meta { margin-top: 0.5rem; font-size: 0.8rem; color: var(--vb-muted); }
+    .vb-post-body { margin-top: 1.25rem; font-size: 0.95rem; line-height: 1.75; color: #E2E8F0; }
+    .vb-post-body img { max-width: 100%; height: auto; border-radius: 0.75rem; margin: 1rem 0; }
+    .vb-post-body a { color: var(--vb-blue-bright); text-decoration: underline; }
+    .vb-post-labels { margin-top: 1.25rem; font-size: 0.8rem; color: var(--vb-muted); }
+    .vb-post-labels a { color: var(--vb-purple-bright); margin-right: 0.65rem; }
+    .vb-comments-box {
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--vb-border);
+      padding-top: 1.25rem;
+    }
+    .vb-comment-item {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--vb-border);
+      font-size: 0.875rem;
+    }
+
+    /* Persistent YouTube Dock */
+    .vb-yt-dock {
+      position: fixed;
+      right: 1rem;
+      bottom: 5.75rem;
+      z-index: 35;
+      width: 17.5rem;
+      overflow: hidden;
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(10, 12, 20, 0.96);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.65);
+      transition: opacity 180ms ease;
+    }
+    .vb-yt-dock.is-hidden {
+      pointer-events: none;
+      opacity: 0;
+      z-index: -1;
+      width: 200px;
+    }
+    .vb-yt-dock-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.4rem 0.7rem;
+      border-bottom: 1px solid var(--vb-border);
+      font-size: 0.7rem;
+      color: #CBD5E1;
+    }
+    .vb-yt-frame-wrap { aspect-ratio: 16 / 9; width: 100%; background: #000000; }
+
+    /* Persistent Bottom Player Bar */
+    .vb-player {
+      position: fixed;
+      inset-inline: 0;
+      bottom: 0;
+      z-index: 45;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      background: rgba(9, 11, 18, 0.96);
+      backdrop-filter: blur(18px);
+    }
+    .vb-player-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 0.65rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.875rem;
+    }
+    .vb-player-left { display: flex; align-items: center; gap: 0.75rem; min-width: 0; flex: 1; }
+    .vb-player-center { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
+    .vb-transport { display: flex; align-items: center; gap: 0.6rem; }
+    .vb-play-fab {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #9333EA, #2563EB);
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(147, 51, 234, 0.35);
+    }
+    .vb-timeline { display: none; width: 100%; align-items: center; gap: 0.6rem; font-size: 0.7rem; color: var(--vb-muted); }
+    .vb-player-right { display: flex; align-items: center; justify-content: flex-end; gap: 0.55rem; }
+    .vb-hide-sm { display: none; }
+    .vb-hide-xl { display: none; }
+
+    input[type='range'].vb-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    input[type='range'].vb-slider::-webkit-slider-runnable-track {
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+    }
+    input[type='range'].vb-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 13px;
+      height: 13px;
+      margin-top: -4px;
+      border-radius: 999px;
+      background: #F8FAFC;
+      box-shadow: 0 0 8px rgba(168, 85, 247, 0.65);
+    }
+
+    /* Queue & Settings Drawer */
+    .vb-drawer {
+      display: none;
+      position: fixed;
+      inset-inline: 0.75rem;
+      bottom: 5.5rem;
+      z-index: 44;
+      max-width: 48rem;
+      margin: 0 auto;
+      max-height: 68vh;
+      overflow-y: auto;
+      border-radius: 1.25rem;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(13, 16, 27, 0.97);
+      padding: 1.25rem;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.7);
+      backdrop-filter: blur(20px);
+    }
+    .vb-drawer.is-open { display: block; }
+
+    .vb-notice {
+      display: none;
+      position: fixed;
+      left: 1rem;
+      bottom: 6rem;
+      z-index: 50;
+      max-width: 26rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(251, 191, 36, 0.45);
+      background: rgba(19, 17, 28, 0.96);
+      padding: 0.9rem 1rem;
+      font-size: 0.75rem;
+      color: #F8FAFC;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.65);
+    }
+    .vb-notice.is-open { display: block; }
+
+    /* Footer */
+    .vb-footer {
+      border-top: 1px solid var(--vb-border);
+      background: #05060A;
+      padding: 2.25rem 1.25rem 8rem;
+      font-size: 0.75rem;
+      color: var(--vb-muted);
+    }
+    .vb-footer-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .vb-footer-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+    .vb-footer-links a:hover, .vb-footer-links button:hover { color: #FFFFFF; }
+
+    /* Responsive Breakpoints */
+    @media (min-width: 640px) {
+      .vb-hero { padding: 2.25rem; }
+      .vb-hero-left { flex-direction: row; align-items: center; }
+      .vb-art-xl { width: 16rem; height: 16rem; }
+      .vb-hero-title { font-size: 2.75rem; }
+      .vb-grid-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .vb-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .vb-track-row { flex-direction: row; align-items: center; justify-content: space-between; }
+      .vb-track-right { padding-left: 0; }
+      .vb-hide-sm { display: inline-flex; }
+    }
+    @media (min-width: 768px) {
+      .vb-nav { display: flex; }
+      .vb-menu-btn { display: none; }
+      .vb-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .vb-footer-inner { flex-direction: row; align-items: center; justify-content: space-between; }
+    }
+    @media (min-width: 1024px) {
+      .vb-hero-grid { grid-template-columns: 7fr 5fr; }
+      .vb-grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .vb-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .vb-player-left { flex: 0 0 32%; }
+      .vb-player-center { flex: 0 0 38%; }
+      .vb-player-right { flex: 0 0 28%; }
+      .vb-timeline { display: flex; }
+    }
+    @media (min-width: 1200px) {
+      .vb-hide-xl { display: inline-flex; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  ]]></b:skin>
+
+  <b:template-skin><![CDATA[
+    body#layout .vb-app-stage,
+    body#layout .vb-player,
+    body#layout .vb-yt-dock,
+    body#layout .vb-drawer,
+    body#layout .vb-notice { display: none !important; }
+    body#layout .vb-layout-section {
+      border: 1px dashed #9333EA;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+  ]]></b:template-skin>
+</head>
+<body>
+  <!-- TOP HEADER -->
+  <header class='vb-header'>
+    <div class='vb-header-inner'>
+      <b:section class='vb-layout-section' id='header-brand' maxwidgets='1' showaddelement='no'>
+        <b:widget id='Header1' locked='true' title='VIBEBOX' type='Header' version='2'>
+          <b:includable id='main'>
+            <a class='vb-logo' expr:href='data:blog.homepageUrl' onclick='if(window.VB &amp;&amp; document.getElementById(&quot;vb-app-stage&quot;).getAttribute(&quot;data-vb-ishome&quot;) === &quot;1&quot;){window.VB.go(&quot;home&quot;);return false;}'>
+              <data:title/>
+            </a>
+          </b:includable>
+        </b:widget>
+      </b:section>
+
+      <nav aria-label='Primary' class='vb-nav'>
+        <button class='vb-nav-btn' data-vb-nav='discover' onclick='window.VB.go(&quot;discover&quot;)' type='button'>Discover</button>
+        <button class='vb-nav-btn' data-vb-nav='party' onclick='window.VB.go(&quot;party&quot;)' type='button'>Party Sets</button>
+        <button class='vb-nav-btn' data-vb-nav='mood' onclick='window.VB.go(&quot;mood&quot;)' type='button'>Mood Radio</button>
+        <button class='vb-nav-btn' data-vb-nav='saved' onclick='window.VB.go(&quot;saved&quot;)' type='button'>Saved</button>
+        <b:section class='vb-layout-section' id='nav-pages' maxwidgets='1' showaddelement='yes'>
+          <b:widget id='PageList1' locked='false' title='Pages' type='PageList' version='2'>
+            <b:includable id='main'>
+              <b:loop values='data:links' var='link'>
+                <a class='vb-nav-btn' expr:href='data:link.href'><data:link.title/></a>
+              </b:loop>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </nav>
+
+      <div class='vb-header-actions'>
+        <button class='vb-search-btn' onclick='window.VB.go(&quot;search&quot;)' type='button'>
+          <span>Search Songs</span>
+        </button>
+        <button aria-label='Toggle Menu' class='vb-menu-btn' onclick='window.VB.toggleMobileMenu()' type='button'>&#9776;</button>
+      </div>
+    </div>
+
+    <div class='vb-mobile-drawer' id='vb-mobile-drawer'>
+      <button onclick='window.VB.go(&quot;home&quot;);window.VB.toggleMobileMenu(false)' type='button'>Home</button>
+      <button onclick='window.VB.go(&quot;discover&quot;);window.VB.toggleMobileMenu(false)' type='button'>Discover (22 Categories)</button>
+      <button onclick='window.VB.go(&quot;party&quot;);window.VB.toggleMobileMenu(false)' type='button'>Party Sets (10 Mixes)</button>
+      <button onclick='window.VB.go(&quot;mood&quot;);window.VB.toggleMobileMenu(false)' type='button'>Mood Radio (8 Stations)</button>
+      <button onclick='window.VB.go(&quot;saved&quot;);window.VB.toggleMobileMenu(false)' type='button'>Saved Playlists &amp; Favorites</button>
+      <button onclick='window.VB.go(&quot;search&quot;);window.VB.toggleMobileMenu(false)' type='button'>Search Songs</button>
+    </div>
+  </header>
+
+  <main class='vb-main'>
+    <!-- DYNAMIC NAUX-INSPIRED AUTO-DJ APP STAGE -->
+    <div class='vb-app-stage' expr:data-vb-ishome='data:view.isHomepage ? &quot;1&quot; : &quot;0&quot;' id='vb-app-stage'></div>
+
+    <!-- BLOGGER POSTS, STATIC PAGES, ARCHIVES, LABELS & COMMENTS -->
+    <div class='vb-blog-wrap' id='vb-blog-wrap'>
+      <b:section class='vb-layout-section' id='main-blog' maxwidgets='1' showaddelement='no'>
+        <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2'>
+          <b:includable id='main'>
+            <b:if cond='data:view.isError'>
+              <section class='vb-post-card'>
+                <p class='vb-kicker'>404 &#183; NOT FOUND</p>
+                <h1 class='vb-post-title' style='margin-top:0.5rem;'>Station or post not found.</h1>
+                <p style='margin-top:0.75rem;color:#94A3B8;'>Jump back into continuous real-song playback above or visit the home directory.</p>
+                <div class='vb-btn-row'>
+                  <a class='vb-btn-primary' expr:href='data:blog.homepageUrl'>Back to Home</a>
+                </div>
+              </section>
+            <b:else/>
+              <b:if cond='data:posts.notEmpty'>
+                <b:if cond='data:view.isHomepage'>
+                  <div class='vb-section-head' style='margin-bottom:1rem;'>
+                    <div>
+                      <h2>Featured Music Blog Posts</h2>
+                      <p>Editorial playlists, artist spotlights, and mixes published on this blog.</p>
+                    </div>
+                  </div>
+                </b:if>
+
+                <b:loop values='data:posts' var='post'>
+                  <article class='vb-post-card' expr:id='&quot;post-&quot; + data:post.id'>
+                    <b:if cond='data:view.isSingleItem'>
+                      <nav aria-label='Breadcrumb' style='margin-bottom:0.75rem;font-size:0.75rem;color:#94A3B8;'>
+                        <a expr:href='data:blog.homepageUrl' style='color:#38BDF8;'>Home</a> &#47; <span><data:post.title/></span>
+                      </nav>
+                      <h1 class='vb-post-title'><data:post.title/></h1>
+                    <b:else/>
+                      <h2 class='vb-post-title' style='font-size:1.35rem;'>
+                        <a expr:href='data:post.url'><data:post.title/></a>
+                      </h2>
+                    </b:if>
+
+                    <div class='vb-post-meta'>
+                      <b:if cond='data:post.author.name'>
+                        <span><data:post.author.name/></span> &#183; 
+                      </b:if>
+                      <span><data:post.date/></span>
+                    </div>
+
+                    <b:if cond='data:view.isSingleItem'>
+                      <div class='vb-post-body'><data:post.body/></div>
+                      <b:if cond='data:post.labels.notEmpty'>
+                        <div class='vb-post-labels'>
+                          Labels:
+                          <b:loop values='data:post.labels' var='label'>
+                            <a expr:href='data:label.url' rel='tag'><data:label.name/></a>
+                          </b:loop>
+                        </div>
+                      </b:if>
+
+                      <b:if cond='data:post.allowComments'>
+                        <section class='vb-comments-box' id='comments'>
+                          <h3 style='font-size:1.1rem;font-weight:700;'>Comments (<data:post.numberOfComments/>)</h3>
+                          <b:if cond='data:post.comments.notEmpty'>
+                            <b:loop values='data:post.comments' var='comment'>
+                              <div class='vb-comment-item'>
+                                <div style='font-weight:600;color:#FFFFFF;'><data:comment.author/> <span class='vb-mono' style='font-weight:400;font-size:0.7rem;color:#64748B;'>&#183; <data:comment.timestamp/></span></div>
+                                <div style='margin-top:0.25rem;color:#CBD5E1;'><data:comment.body/></div>
+                              </div>
+                            </b:loop>
+                          </b:if>
+                          <b:if cond='data:post.embedCommentForm'>
+                            <div style='margin-top:1rem;'>
+                              <iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' expr:src='data:post.commentFormIframeSrc' frameborder='0' height='260' id='comment-editor' name='comment-editor' style='width:100%;border:0;'></iframe>
+                            </div>
+                          </b:if>
+                        </section>
+                      </b:if>
+                    <b:else/>
+                      <p style='margin-top:0.75rem;font-size:0.875rem;color:#94A3B8;'><b:eval expr='snippet(data:post.body, {length: 160, links: false, linebreaks: false})'/></p>
+                      <div style='margin-top:0.85rem;'>
+                        <a class='vb-link-more' expr:href='data:post.url'>Open Mix Post &#8594;</a>
+                      </div>
+                    </b:if>
+                  </article>
+                </b:loop>
+
+                <div class='vb-btn-row'>
+                  <b:if cond='data:newerPageUrl'>
+                    <a class='vb-btn-sec' expr:href='data:newerPageUrl'>&#8592; Newer Posts</a>
+                  </b:if>
+                  <b:if cond='data:olderPageUrl'>
+                    <a class='vb-btn-sec' expr:href='data:olderPageUrl'>Older Posts &#8594;</a>
+                  </b:if>
+                </div>
+              </b:if>
+            </b:if>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+  </main>
+
+  <!-- FOOTER & OPTIONAL BLOGGER GADGETS -->
+  <footer class='vb-footer'>
+    <div class='vb-footer-inner'>
+      <div>
+        <strong class='vb-display' style='color:#FFFFFF;font-size:1rem;'>VIBEBOX</strong>
+        <p style='margin:0.35rem 0 0;color:#64748B;'>Press Play. Let the Music Flow. Official Web Audio preview crossfade &amp; YouTube IFrame playback.</p>
+      </div>
+      <div class='vb-footer-links'>
+        <button onclick='window.VB.go(&quot;discover&quot;)' type='button'>Discover</button>
+        <button onclick='window.VB.go(&quot;party&quot;)' type='button'>Party Sets</button>
+        <button onclick='window.VB.go(&quot;mood&quot;)' type='button'>Mood Radio</button>
+        <button onclick='window.VB.go(&quot;saved&quot;)' type='button'>Saved</button>
+        <button onclick='window.VB.go(&quot;search&quot;)' type='button'>Search</button>
+      </div>
+    </div>
+    <div style='max-width:80rem;margin:1rem auto 0;'>
+      <b:section class='vb-layout-section' id='footer-widgets' showaddelement='yes'>
+        <b:widget id='HTML1' locked='false' title='Blog Attribution' type='HTML' version='2'>
+          <b:includable id='main'>
+            <div style='color:#64748B;font-size:0.75rem;'><data:content/></div>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+  </footer>
+
+  <!-- PERSISTENT YOUTUBE IFRAME STAGE DOCK -->
+  <div aria-label='Official YouTube Video Stage' class='vb-yt-dock is-hidden' id='vb-yt-dock'>
+    <div class='vb-yt-dock-bar'>
+      <span id='vb-yt-channel' style='overflow:hidden;text-overflow:ellipsis;white-space:nowrap;'>YouTube Official</span>
+      <a href='#' id='vb-yt-ext' rel='noopener noreferrer' style='color:#38BDF8;' target='_blank'>Watch &#8599;</a>
+    </div>
+    <div class='vb-yt-frame-wrap'>
+      <div id='vb-yt-player'></div>
+    </div>
+  </div>
+
+  <!-- UNAVAILABLE NOTICE BANNER -->
+  <div aria-live='polite' class='vb-notice' id='vb-notice' role='alert'></div>
+
+  <!-- QUEUE & DJ CONTROLS DRAWER -->
+  <div aria-label='Auto-DJ Queue and Settings' class='vb-drawer' id='vb-drawer' role='dialog'></div>
+
+  <!-- PERSISTENT BOTTOM PLAYER BAR -->
+  <aside aria-label='Persistent Auto-DJ Player' class='vb-player' id='vb-player-shell'>
+    <div class='vb-player-inner'>
+      <div class='vb-player-left'>
+        <div class='vb-art vb-art-sm' id='vb-bar-art'></div>
+        <div style='min-width:0;flex:1;'>
+          <div id='vb-bar-title' style='font-size:0.875rem;font-weight:600;color:#FFFFFF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>Press Play</div>
+          <div id='vb-bar-meta' style='font-size:0.75rem;color:#94A3B8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>VIBEBOX Auto-DJ</div>
+          <div class='vb-hide-sm' id='vb-bar-source' style='font-size:0.68rem;color:#64748B;gap:0.4rem;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'></div>
+        </div>
+        <button aria-label='Favorite track' id='vb-bar-fav' onclick='window.VB.toggleFavoriteCurrent()' style='padding:0.35rem;color:#94A3B8;' type='button'>&#9825;</button>
+      </div>
+
+      <div class='vb-player-center'>
+        <div class='vb-transport'>
+          <button aria-label='Shuffle' class='vb-hide-sm' id='vb-bar-shuffle' onclick='window.VB.toggleShuffle()' style='padding:0.35rem;color:#94A3B8;' type='button'>&#8646;</button>
+          <button aria-label='Previous song' onclick='window.VB.prevSong()' style='padding:0.35rem;color:#E2E8F0;' type='button'>&#9198;</button>
+          <button aria-label='Play or Pause' class='vb-play-fab' id='vb-bar-play' onclick='window.VB.togglePlayPause()' type='button'>&#9654;</button>
+          <button aria-label='Next song' onclick='window.VB.nextSong()' style='padding:0.35rem;color:#E2E8F0;' type='button'>&#9197;</button>
+          <button aria-label='Repeat mode' class='vb-hide-sm' id='vb-bar-repeat' onclick='window.VB.cycleRepeat()' style='padding:0.35rem;color:#94A3B8;' type='button'>&#8635;</button>
+        </div>
+        <div class='vb-timeline'>
+          <span class='vb-mono' id='vb-bar-ct' style='width:2.2rem;text-align:right;'>0:00</span>
+          <input aria-label='Seek timeline' class='vb-slider' id='vb-bar-seek' max='30' min='0' oninput='window.VB.seek(Number(this.value))' step='0.5' style='flex:1;' type='range' value='0'/>
+          <span class='vb-mono' id='vb-bar-dur' style='width:2.2rem;'>0:30</span>
+        </div>
+      </div>
+
+      <div class='vb-player-right'>
+        <button class='vb-btn-sec vb-hide-xl' id='vb-bar-mode' onclick='window.VB.togglePlaybackMode()' style='padding:0.4rem 0.7rem;font-size:0.72rem;' type='button'>Web Audio Mix</button>
+        <div class='vb-hide-sm' style='align-items:center;gap:0.35rem;'>
+          <button aria-label='Mute toggle' id='vb-bar-mute' onclick='window.VB.toggleMute()' style='color:#94A3B8;font-size:0.85rem;' type='button'>&#128266;</button>
+          <input aria-label='Volume' class='vb-slider' id='vb-bar-vol' max='100' min='0' oninput='window.VB.setVolume(Number(this.value)/100)' style='width:4.2rem;' type='range' value='85'/>
+        </div>
+        <button aria-label='Open Queue and DJ Controls' class='vb-btn-sec' id='vb-bar-queue-btn' onclick='window.VB.toggleDrawer()' style='padding:0.45rem 0.75rem;font-size:0.75rem;' type='button'>Queue</button>
+      </div>
+    </div>
+  </aside>
+
+  <script type='text/javascript'>
+  //<![CDATA[
+  (function() {
+    "use strict";
+
+    var VB_COLLECTIONS = {"categories":[{"id":"bollywood-party","slug":"bollywood-party","kind":"category","group":"Hindi","title":"Bollywood Party","subtitle":"High-energy Hindi film dance anthems for nonstop celebrations.","accentFrom":"#9333EA","accentTo":"#EC4899","path":"/category/bollywood-party"},{"id":"hindi-dance","slug":"hindi-dance","kind":"category","group":"Hindi","title":"Hindi Dance","subtitle":"Chart-topping club bangers and upbeat Bollywood floor-fillers.","accentFrom":"#A855F7","accentTo":"#3B82F6","path":"/category/hindi-dance"},{"id":"hindi-retro","slug":"hindi-retro","kind":"category","group":"Hindi","title":"Hindi Retro","subtitle":"Timeless classics by Kishore Kumar, Mohammed Rafi, and Asha Bhosle.","accentFrom":"#D97706","accentTo":"#9333EA","path":"/category/hindi-retro"},{"id":"hindi-romantic","slug":"hindi-romantic","kind":"category","group":"Hindi","title":"Hindi Romantic","subtitle":"Soulful Bollywood love songs by Arijit Singh, Jubin Nautiyal, and more.","accentFrom":"#DB2777","accentTo":"#7C3AED","path":"/category/hindi-romantic"},{"id":"hindi-sufi","slug":"hindi-sufi","kind":"category","group":"Hindi","title":"Hindi Sufi","subtitle":"Spiritual qawwalis and acoustic Sufi ballads by A.R. Rahman & Rahat Fateh Ali Khan.","accentFrom":"#0EA5E9","accentTo":"#6D28D9","path":"/category/hindi-sufi"},{"id":"hindi-hip-hop","slug":"hindi-hip-hop","kind":"category","group":"Hindi","title":"Hindi Hip-Hop","subtitle":"Desi street rap anthems from DIVINE, Ranveer Singh, and Naezy.","accentFrom":"#4F46E5","accentTo":"#06B6D4","path":"/category/hindi-hip-hop"},{"id":"punjabi-party","slug":"punjabi-party","kind":"category","group":"Punjabi","title":"Punjabi Party","subtitle":"AP Dhillon, Karan Aujla, and chart-dominating Punjabi club hits.","accentFrom":"#7E22CE","accentTo":"#F59E0B","path":"/category/punjabi-party"},{"id":"punjabi-wedding","slug":"punjabi-wedding","kind":"category","group":"Punjabi","title":"Punjabi Wedding","subtitle":"Sangeet and mehndi favorites built for family dancefloors.","accentFrom":"#C026D3","accentTo":"#F43F5E","path":"/category/punjabi-wedding"},{"id":"punjabi-sad","slug":"punjabi-sad","kind":"category","group":"Punjabi","title":"Punjabi Sad","subtitle":"Emotional heartbreak ballads by B Praak, Ammy Virk, and Harrdy Sandhu.","accentFrom":"#334155","accentTo":"#6366F1","path":"/category/punjabi-sad"},{"id":"punjabi-workout","slug":"punjabi-workout","kind":"category","group":"Punjabi","title":"Punjabi Workout","subtitle":"Hard-hitting beats from Sidhu Moose Wala and Shubh for peak gym focus.","accentFrom":"#2563EB","accentTo":"#9333EA","path":"/category/punjabi-workout"},{"id":"punjabi-bhangra","slug":"punjabi-bhangra","kind":"category","group":"Punjabi","title":"Punjabi Bhangra","subtitle":"Iconic dhol and tumbi classics from Daler Mehndi, Panjabi MC, and Imran Khan.","accentFrom":"#EA580C","accentTo":"#9333EA","path":"/category/punjabi-bhangra"},{"id":"english-hip-hop","slug":"english-hip-hop","kind":"category","group":"English","title":"English Hip-Hop","subtitle":"Global rap classics and modern anthems from Eminem, Kendrick Lamar, and Drake.","accentFrom":"#312E81","accentTo":"#06B6D4","path":"/category/english-hip-hop"},{"id":"english-pop","slug":"english-pop","kind":"category","group":"English","title":"English Pop","subtitle":"Worldwide synth-pop and vocal hits from The Weeknd, Dua Lipa, and Harry Styles.","accentFrom":"#2563EB","accentTo":"#38BDF8","path":"/category/english-pop"},{"id":"english-love-songs","slug":"english-love-songs","kind":"category","group":"English","title":"English Love Songs","subtitle":"Timeless ballads by Ed Sheeran, John Legend, Lady Gaga, and Bruno Mars.","accentFrom":"#EC4899","accentTo":"#8B5CF6","path":"/category/english-love-songs"},{"id":"english-edm","slug":"english-edm","kind":"category","group":"English","title":"English EDM","subtitle":"Festival anthems from Avicii, David Guetta, and Swedish House Mafia.","accentFrom":"#6366F1","accentTo":"#A855F7","path":"/category/english-edm"},{"id":"english-party-hits","slug":"english-party-hits","kind":"category","group":"English","title":"English Party Hits","subtitle":"Nonstop feel-good dancefloor staples from Bruno Mars, Justin Timberlake, and LMFAO.","accentFrom":"#8B5CF6","accentTo":"#38BDF8","path":"/category/english-party-hits"},{"id":"tamil-kuthu","slug":"tamil-kuthu","kind":"category","group":"Regional","title":"Tamil Kuthu","subtitle":"Explosive Kollywood mass tracks by Anirudh Ravichander and Dhanush.","accentFrom":"#E11D48","accentTo":"#7C3AED","path":"/category/tamil-kuthu"},{"id":"telugu-mass","slug":"telugu-mass","kind":"category","group":"Regional","title":"Telugu Mass","subtitle":"Tollywood blockbusters including Naatu Naatu, Butta Bomma, and Oo Antava.","accentFrom":"#F59E0B","accentTo":"#DC2626","path":"/category/telugu-mass"},{"id":"haryanvi-party","slug":"haryanvi-party","kind":"category","group":"Regional","title":"Haryanvi Party","subtitle":"High-voltage Haryanvi DJ hits by Renuka Panwar and Sapna Choudhary.","accentFrom":"#7C3AED","accentTo":"#06B6D4","path":"/category/haryanvi-party"},{"id":"bhojpuri-party","slug":"bhojpuri-party","kind":"category","group":"Regional","title":"Bhojpuri Party","subtitle":"Iconic Bhojpuri dance hits by Pawan Singh and Manoj Tiwari.","accentFrom":"#EC4899","accentTo":"#F59E0B","path":"/category/bhojpuri-party"},{"id":"gujarati-garba","slug":"gujarati-garba","kind":"category","group":"Regional","title":"Gujarati Garba","subtitle":"Navratri dandiya & folk favorites including Chogada, Dholida, and Khalasi.","accentFrom":"#C026D3","accentTo":"#2563EB","path":"/category/gujarati-garba"},{"id":"marathi-party","slug":"marathi-party","kind":"category","group":"Regional","title":"Marathi Party","subtitle":"Iconic Ajay-Atul blockbusters from Sairat and Natarang.","accentFrom":"#0EA5E9","accentTo":"#9333EA","path":"/category/marathi-party"}],"moods":[{"id":"happy-radio","slug":"happy-radio","kind":"mood","title":"Happy Radio","subtitle":"Upbeat feel-good hits across Bollywood, Pop, and Punjabi.","accentFrom":"#38BDF8","accentTo":"#A855F7","path":"/mood/happy-radio"},{"id":"sad-radio","slug":"sad-radio","kind":"mood","title":"Sad Radio","subtitle":"Heartfelt ballads from Arijit Singh, B Praak, and John Legend.","accentFrom":"#334155","accentTo":"#6366F1","path":"/mood/sad-radio"},{"id":"romantic-radio","slug":"romantic-radio","kind":"mood","title":"Romantic Radio","subtitle":"Love songs spanning Hindi, English, and soulful Sufi melodies.","accentFrom":"#EC4899","accentTo":"#8B5CF6","path":"/mood/romantic-radio"},{"id":"chill-radio","slug":"chill-radio","kind":"mood","title":"Chill Radio","subtitle":"Laid-back Sufi, acoustic classics, and smooth grooves.","accentFrom":"#06B6D4","accentTo":"#3B82F6","path":"/mood/chill-radio"},{"id":"night-drive","slug":"night-drive","kind":"mood","title":"Night Drive","subtitle":"Late-night synth-pop, Punjabi midnight vibes, and smooth hip-hop.","accentFrom":"#7C3AED","accentTo":"#2563EB","path":"/mood/night-drive"},{"id":"party-radio","slug":"party-radio","kind":"mood","title":"Party Radio","subtitle":"Nonstop high-energy dance tracks across Bollywood, EDM, and Regional hits.","accentFrom":"#A855F7","accentTo":"#EC4899","path":"/mood/party-radio"},{"id":"workout-radio","slug":"workout-radio","kind":"mood","title":"Workout Radio","subtitle":"Adrenaline-packed hip-hop, Punjabi anthems, and EDM drops.","accentFrom":"#2563EB","accentTo":"#06B6D4","path":"/mood/workout-radio"},{"id":"focus-radio","slug":"focus-radio","kind":"mood","title":"Focus Radio","subtitle":"Calm neo-classical piano, ambient soundscapes, and serene Sufi.","accentFrom":"#4F46E5","accentTo":"#0EA5E9","path":"/mood/focus-radio"}],"sets":[{"id":"house-party","slug":"house-party","kind":"set","title":"House Party","subtitle":"Ready-made multi-genre mix blending Bollywood, Punjabi, and English club hits.","accentFrom":"#9333EA","accentTo":"#38BDF8","path":"/set/house-party"},{"id":"bollywood-night","slug":"bollywood-night","kind":"set","title":"Bollywood Night","subtitle":"Back-to-back Hindi film party tracks curated for late-night dancing.","accentFrom":"#A855F7","accentTo":"#EC4899","path":"/set/bollywood-night"},{"id":"punjabi-night","slug":"punjabi-night","kind":"set","title":"Punjabi Night","subtitle":"AP Dhillon, Karan Aujla, Sidhu Moose Wala, and timeless bhangra.","accentFrom":"#7E22CE","accentTo":"#F59E0B","path":"/set/punjabi-night"},{"id":"wedding-dance","slug":"wedding-dance","kind":"set","title":"Wedding Dance","subtitle":"Sangeet, baraat, and garba crowd-pleasers ready in one click.","accentFrom":"#C026D3","accentTo":"#F43F5E","path":"/set/wedding-dance"},{"id":"birthday-party","slug":"birthday-party","kind":"set","title":"Birthday Party","subtitle":"Upbeat celebration anthems across Hindi, Punjabi, and English pop.","accentFrom":"#8B5CF6","accentTo":"#38BDF8","path":"/set/birthday-party"},{"id":"college-party","slug":"college-party","kind":"set","title":"College Party","subtitle":"High-energy Desi hip-hop, EDM drops, and mass regional bangers.","accentFrom":"#2563EB","accentTo":"#EC4899","path":"/set/college-party"},{"id":"road-trip","slug":"road-trip","kind":"set","title":"Road Trip","subtitle":"Sing-along highway favorites spanning Hindi, Punjabi, and English hits.","accentFrom":"#0EA5E9","accentTo":"#7C3AED","path":"/set/road-trip"},{"id":"gym-session","slug":"gym-session","kind":"set","title":"Gym Session","subtitle":"Heavy bass, motivational hip-hop, and relentless workout energy.","accentFrom":"#1D4ED8","accentTo":"#9333EA","path":"/set/gym-session"},{"id":"romantic-evening","slug":"romantic-evening","kind":"set","title":"Romantic Evening","subtitle":"Candlelit Hindi and English love ballads with Sufi warmth.","accentFrom":"#DB2777","accentTo":"#6D28D9","path":"/set/romantic-evening"},{"id":"english-club-hits","slug":"english-club-hits","kind":"set","title":"English Club Hits","subtitle":"EDM festival anthems, global pop, and hip-hop floor fillers.","accentFrom":"#4F46E5","accentTo":"#38BDF8","path":"/set/english-club-hits"}]};
+    var VB_SONGS = [{"id":"295","title":"295","artist":"Sidhu Moose Wala","album":"Moosetape","releaseYear":2021,"genre":"Punjabi Hip-Hop","language":"Punjabi","moods":["workout-radio","night-drive"],"categories":["punjabi-workout"],"sets":["gym-session","punjabi-night","road-trip"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/97/69/58/976958ae-725e-bd41-6755-f0921c697840/810063889609_cover.jpg/600x600bb.jpg","durationSec":270,"hookStartSec":30,"sources":{"youtube":{"videoId":"n_FCrCQ6-bA","channelName":"Sidhu Moose Wala","officialUrl":"https://www.youtube.com/watch?v=n_FCrCQ6-bA","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7f/f3/6d/7ff36d63-b933-3993-cd2f-f3fd770c3763/mzaf_12675758250838366519.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/295/1826848583?i=1826848930&uo=4"}}},{"id":"kala-chashma","title":"Kala Chashma","artist":"Amar Arshi, Badshah & Neha Kakkar","album":"Baar Baar Dekho (Original Motion Picture Soundtrack)","releaseYear":2016,"genre":"Bollywood Dance","language":"Hindi","moods":["party-radio","happy-radio"],"categories":["bollywood-party","hindi-dance"],"sets":["house-party","bollywood-night","wedding-dance","birthday-party","college-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/14/b8/58/14b85883-40a4-0a2e-de65-130f55726ee6/840780180390.png/600x600bb.jpg","durationSec":187,"hookStartSec":42,"sources":{"youtube":{"videoId":"4WRJHbL4dAk","channelName":"Zee Music Company","officialUrl":"https://www.youtube.com/watch?v=4WRJHbL4dAk","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/0b/40/3e/0b403e59-7e56-248f-9363-662fa5d4a6d8/mzaf_7321027000281469165.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/kala-chashma/1529568803?i=1529568809&uo=4"}}},{"id":"badtameez-dil","title":"Badtameez Dil","artist":"Benny Dayal & Shefali Alvares","album":"Yeh Jawaani Hai Deewani (Original Motion Picture Soundtrack)","releaseYear":2013,"genre":"Bollywood Dance","language":"Hindi","moods":["party-radio","happy-radio"],"categories":["bollywood-party","hindi-dance"],"sets":["house-party","bollywood-night","wedding-dance","birthday-party","college-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/62/d6/74/62d67432-0670-631f-db6a-d4bac3adae4b/8902894353328_cover.jpg/600x600bb.jpg","durationSec":253,"hookStartSec":35,"sources":{"youtube":{"videoId":"N0uDmkTV08Y","channelName":"T-Series","officialUrl":"https://www.youtube.com/watch?v=N0uDmkTV08Y","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/88/e2/af/88e2af36-3b58-3f34-32c3-d94d3086c8d5/mzaf_15476348080733865142.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/badtameez-dil/1070912669?i=1070912803&uo=4"}}},{"id":"kar-gayi-chull","title":"Kar Gayi Chull","artist":"Badshah, Fazilpuria & Neha Kakkar","album":"Kapoor & Sons (Since 1921) [Original Motion Picture Soundtrack]","releaseYear":2016,"genre":"Bollywood Party","language":"Hindi","moods":["party-radio","happy-radio"],"categories":["bollywood-party","hindi-dance"],"sets":["house-party","bollywood-night","birthday-party","college-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b9/ec/4e/b9ec4e53-c55a-3f64-f6c2-92e72dcaec50/886445771978.jpg/600x600bb.jpg","durationSec":188,"hookStartSec":30,"sources":{"youtube":{"videoId":"NTHz9ephYTw","channelName":"Sony Music India","officialUrl":"https://www.youtube.com/watch?v=NTHz9ephYTw","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a2/73/42/a273426d-66bc-2d7d-abd6-a3000b37ec5f/mzaf_14832496167081149978.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/kar-gayi-chull/1088788675?i=1088788681&uo=4"}}},{"id":"ghungroo","title":"Ghungroo","artist":"Arijit Singh & Shilpa Rao","album":"Ghungroo (From \"War\") - Single","releaseYear":2019,"genre":"Bollywood Dance","language":"Hindi","moods":["party-radio","happy-radio","night-drive"],"categories":["bollywood-party","hindi-dance"],"sets":["house-party","bollywood-night","road-trip"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f4/0b/88/f40b88d5-75cb-27b8-6b00-bba98f0f2fd0/849486006911_cover.jpg/600x600bb.jpg","durationSec":303,"hookStartSec":40,"sources":{"youtube":{"videoId":"qFkNATtc3mc","channelName":"YRF","officialUrl":"https://www.youtube.com/watch?v=qFkNATtc3mc","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d1/90/95/d190958b-cb33-34b6-83d2-4d88b6ff1348/mzaf_8015651280578447253.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/ghungroo-from-war/1478998925?i=1478998926&uo=4"}}},{"id":"jhoome-jo-pathaan","title":"Jhoome Jo Pathaan","artist":"Arijit Singh & Sukriti Kakar","album":"Pathaan (Original Motion Picture Soundtrack)","releaseYear":2022,"genre":"Bollywood Dance","language":"Hindi","moods":["party-radio","workout-radio"],"categories":["hindi-dance","bollywood-party"],"sets":["bollywood-night","gym-session","college-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/8d/6a/19/8d6a197e-2aaa-5504-cd43-533351597487/Pathaan-Album-Audio-Cover-Final.jpg/600x600bb.jpg","durationSec":208,"hookStartSec":38,"sources":{"youtube":{"videoId":"YxWlaYCA8MU","channelName":"YRF","officialUrl":"https://www.youtube.com/watch?v=YxWlaYCA8MU","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/be/80/45/be8045ce-1ce5-b099-fc9d-7141b1d3d6f2/mzaf_10087280935419764280.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/jhoome-jo-pathaan/1659644976?i=1659644978&uo=4"}}},{"id":"aankh-marey","title":"Aankh Marey","artist":"Neha Kakkar, Mika Singh & Kumar Sanu","album":"Simmba (Original Motion Picture Soundtrack)","releaseYear":2018,"genre":"Bollywood Dance","language":"Hindi","moods":["party-radio","happy-radio"],"categories":["hindi-dance","bollywood-party"],"sets":["bollywood-night","wedding-dance","birthday-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/99/4c/e2/994ce25e-0fe1-1287-972d-7ab5f09e55e1/8902894360616_cover.jpg/600x600bb.jpg","durationSec":213,"hookStartSec":28,"sources":{"youtube":{"videoId":"_KhQT-LGb-4","channelName":"T-Series","officialUrl":"https://www.youtube.com/watch?v=_KhQT-LGb-4","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/91/a0/7a/91a07a10-8b2d-d802-42a8-f650d9981a89/mzaf_10735478748640447377.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/aankh-marey/1447936145?i=1447936149&uo=4"}}},{"id":"nashe-si-chadh-gayi","title":"Nashe Si Chadh Gayi","artist":"Arijit Singh","album":"Befikre (Original Motion Picture Soundtrack)","releaseYear":2016,"genre":"Bollywood Pop","language":"Hindi","moods":["happy-radio","party-radio"],"categories":["hindi-dance","bollywood-party"],"sets":["bollywood-night","road-trip","birthday-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/61/24/d9/6124d942-9d43-7863-f402-c37d9fb8e491/849486075603_cover.jpg/600x600bb.jpg","durationSec":245,"hookStartSec":34,"sources":{"youtube":{"videoId":"HoCwa6gnmM0","channelName":"YRF","officialUrl":"https://www.youtube.com/watch?v=HoCwa6gnmM0","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/af/d1/25/afd125f4-14ec-96db-f041-734b2be25ebf/mzaf_16119343562690640430.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/nashe-si-chadh-gayi/1181809037?i=1181809040&uo=4"}}},{"id":"london-thumakda","title":"London Thumakda","artist":"Labh Janjua, Sonu Kakkar & Neha Kakkar","album":"Queen (Original Motion Picture Soundtrack)","releaseYear":2014,"genre":"Bollywood Wedding","language":"Hindi","moods":["happy-radio","party-radio"],"categories":["hindi-dance","bollywood-party","punjabi-wedding"],"sets":["wedding-dance","bollywood-night","birthday-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music20/v4/ed/4c/52/ed4c520a-0714-0234-60cf-5f5b09ada16b/8902894355360_cover.jpg/600x600bb.jpg","durationSec":230,"hookStartSec":30,"sources":{"youtube":{"videoId":"udra3Mfw2oo","channelName":"T-Series","officialUrl":"https://www.youtube.com/watch?v=udra3Mfw2oo","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/04/f2/15/04f2159c-f378-3323-d3a0-c055474ec688/mzaf_11306147181651969029.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/london-thumakda/1116194763?i=1116194835&uo=4"}}},{"id":"gulabi-aankhen","title":"Gulabi Aankhen","artist":"Mohammed Rafi","album":"The Train (Original Soundtrack)","releaseYear":1970,"genre":"Hindi Retro","language":"Hindi","moods":["happy-radio","chill-radio","romantic-radio"],"categories":["hindi-retro"],"sets":["road-trip","romantic-evening"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/5b/90/2f/5b902fac-5017-f683-0d78-4964fc0a65fc/00044006423623.rgb.jpg/600x600bb.jpg","durationSec":200,"hookStartSec":22,"sources":{"youtube":{"videoId":"6Z3DO-OFIjQ","channelName":"Shemaroo Filmi Gaane","officialUrl":"https://www.youtube.com/watch?v=6Z3DO-OFIjQ","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ff/3f/4f/ff3f4fdd-f45d-7c3b-e59b-6905f646a481/mzaf_3159744630147102218.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/gulabi-ankhen/1443477433?i=1443477434&uo=4"}}},{"id":"pal-pal-dil-ke-paas","title":"Pal Pal Dil Ke Paas","artist":"Kishore Kumar","album":"Blackmail (Original Soundtrack)","releaseYear":1973,"genre":"Hindi Retro","language":"Hindi","moods":["romantic-radio","chill-radio"],"categories":["hindi-retro","hindi-romantic"],"sets":["romantic-evening"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/18/2c/fd/182cfdb1-c27a-8d41-d58a-fca4ff017c69/06UMGIM37432.rgb.jpg/600x600bb.jpg","durationSec":329,"hookStartSec":25,"sources":{"youtube":{"videoId":"AMuRRXCuy-4","channelName":"Shemaroo","officialUrl":"https://www.youtube.com/watch?v=AMuRRXCuy-4","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/9a/6b/20/9a6b2063-8492-9a67-7d85-3c8fedcf425f/mzaf_10296051997391143250.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/pal-pal-dil-ke-paas/1443458331?i=1443458534&uo=4"}}},{"id":"chura-liya-hai","title":"Chura Liya Hai Tumne Jo Dil Ko","artist":"Asha Bhosle & Mohammed Rafi","album":"Singing Icon - Asha Bhosle","releaseYear":1973,"genre":"Hindi Retro","language":"Hindi","moods":["romantic-radio","chill-radio"],"categories":["hindi-retro","hindi-romantic"],"sets":["romantic-evening"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/87/63/24/87632416-39f8-b22b-7ecd-a299c5d6732e/192562482872.jpg/600x600bb.jpg","durationSec":288,"hookStartSec":30,"sources":{"youtube":{"videoId":"Ob8rBaUT0Yk","channelName":"amitava1988","officialUrl":"https://www.youtube.com/watch?v=Ob8rBaUT0Yk","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/2a/0b/68/2a0b68bc-7eeb-37b5-4a13-45e116b90691/mzaf_13018029117584373768.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/chura-liya-hai-tumne-jo-dil-ko-from-yaadon-ki-baaraat/1377309727?i=1377310101&uo=4"}}},{"id":"ek-ladki-bheegi","title":"Ek Ladki Bheegi Bhaagi Si","artist":"Kishore Kumar","album":"History of Indian Film Music, [Bedard Zamana Kya Jane (1959), Boot Polish (1953), Chalti Ka Naam Gaadi (1958)], Vol. 18","releaseYear":1958,"genre":"Hindi Retro","language":"Hindi","moods":["happy-radio","chill-radio"],"categories":["hindi-retro"],"sets":["road-trip"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/49/f5/6c/49f56c28-d16c-0f8d-b987-f9dceb133efb/5204833038000.jpg/600x600bb.jpg","durationSec":245,"hookStartSec":18,"sources":{"youtube":{"videoId":"ozwH49d7nOA","channelName":"Saregama Music","officialUrl":"https://www.youtube.com/watch?v=ozwH49d7nOA","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/d5/35/0e/d5350ee3-81f0-2c0b-74b5-398df9487513/mzaf_17160205623710179746.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/ek-ladki-bheegi-bhaagi-si/790495885?i=790495958&uo=4"}}},{"id":"tum-hi-ho","title":"Tum Hi Ho","artist":"Arijit Singh","album":"Aashiqui 2 (Original Motion Picture Soundtrack)","releaseYear":2013,"genre":"Bollywood Romantic","language":"Hindi","moods":["romantic-radio","sad-radio"],"categories":["hindi-romantic"],"sets":["romantic-evening"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/23/ee/bb23eeed-0c35-4f1d-2b11-485622777ae4/8902894353007_cover.jpg/600x600bb.jpg","durationSec":262,"hookStartSec":40,"sources":{"youtube":{"videoId":"Umqb9KENgmk","channelName":"T-Series","officialUrl":"https://www.youtube.com/watch?v=Umqb9KENgmk","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/3a/8c/9b/3a8c9b0b-2def-750a-f615-1555bf941edf/mzaf_17229496441442805917.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/tum-hi-ho/1073359412?i=1073359419&uo=4"}}},{"id":"kesariya","title":"Kesariya","artist":"Arijit Singh","album":"Kesariya (From \"Brahmastra\") - Single","releaseYear":2022,"genre":"Bollywood Romantic","language":"Hindi","moods":["romantic-radio","happy-radio"],"categories":["hindi-romantic"],"sets":["romantic-evening","road-trip"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9f/13/ca/9f13ca3b-e533-03e0-f19a-f0aaa774581d/196589311191.jpg/600x600bb.jpg","durationSec":268,"hookStartSec":36,"sources":{"youtube":{"videoId":"BddP6PYo2gs","channelName":"Sony Music India","officialUrl":"https://www.youtube.com/watch?v=BddP6PYo2gs","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/38/4c/5c/384c5c8f-3ff8-e457-b2f7-3158ce108649/mzaf_12389299033886433185.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/kesariya-from-brahmastra/1635013814?i=1635014240&uo=4"}}},{"id":"raataan-lambiyan","title":"Raataan Lambiyan","artist":"Jubin Nautiyal & Asees Kaur","album":"Raataan Lambiyan (From \"Shershaah\") - Single","releaseYear":2021,"genre":"Bollywood Romantic","language":"Hindi","moods":["romantic-radio","chill-radio"],"categories":["hindi-romantic"],"sets":["romantic-evening","wedding-dance"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c3/df/e7/c3dfe71e-d532-458e-9c1c-32d40f8d9123/886449472222.jpg/600x600bb.jpg","durationSec":230,"hookStartSec":32,"sources":{"youtube":{"videoId":"3EJGAKPifNs","channelName":"Sony Music India","officialUrl":"https://www.youtube.com/watch?v=3EJGAKPifNs","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ff/7a/7a/ff7a7a63-9947-cefa-e269-ad9602fb1ca3/mzaf_14039909875904828823.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/raataan-lambiyan-from-shershaah/1578079452?i=1578079453&uo=4"}}},{"id":"agar-tum-saath-ho","title":"Agar Tum Saath Ho","artist":"Alka Yagnik & Arijit Singh","album":"Tamasha (Original Motion Picture Soundtrack)","releaseYear":2015,"genre":"Bollywood Romantic","language":"Hindi","moods":["sad-radio","romantic-radio"],"categories":["hindi-romantic"],"sets":["romantic-evening"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/ac/67/cbac673a-9213-7118-bb4e-2440273afb03/8902894357470_cover.jpg/600x600bb.jpg","durationSec":341,"hookStartSec":45,"sources":{"youtube":{"videoId":"sK7riqg2mr4","channelName":"T-Series","officialUrl":"https://www.youtube.com/watch?v=sK7riqg2mr4","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/75/a8/7d/75a87dcc-5b69-795d-7dcc-27d1c728f31f/mzaf_18055325784732588932.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/agar-tum-saath-ho/1071074537?i=1071074558&uo=4"}}},{"id":"kun-faya-kun","title":"Kun Faya Kun","artist":"A.R. Rahman, Javed Ali & Mohit Chauhan","album":"Rockstar (Original Motion Picture Soundtrack)","releaseYear":2011,"genre":"Hindi Sufi","language":"Hindi","moods":["chill-radio","focus-radio"],"categories":["hindi-sufi"],"sets":["romantic-evening"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/56/ac/41/56ac41f7-99f3-3eae-3b07-443167292c4e/8902894697408_cover.jpg/600x600bb.jpg","durationSec":471,"hookStartSec":52,"sources":{"youtube":{"videoId":"T94PHkuydcw","channelName":"T-Series","officialUrl":"https://www.youtube.com/watch?v=T94PHkuydcw","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ce/72/5e/ce725e63-6977-b281-3766-fff46d6e0c07/mzaf_7464998292185183397.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/kun-faya-kun/1123241840?i=1123241921&uo=4"}}},{"id":"tere-bina","title":"Tere Bina","artist":"A.R. Rahman & Chinmayi","album":"Guru (Original Motion Picture Soundtrack)","releaseYear":2006,"genre":"Hindi Sufi","language":"Hindi","moods":["romantic-radio","chill-radio","focus-radio"],"categories":["hindi-sufi","hindi-romantic"],"sets":["romantic-evening"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8d/8c/69/8d8c697e-f108-9e69-0cb1-475b45ab26a8/886970389020.jpg/600x600bb.jpg","durationSec":310,"hookStartSec":38,"sources":{"youtube":{"videoId":"9JDSGhhiOwI","channelName":"Sony Music India","officialUrl":"https://www.youtube.com/watch?v=9JDSGhhiOwI","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/23/61/64/236164d3-f330-d526-6045-d975a4be4a64/mzaf_17030153012157637966.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/tere-bina/264849882?i=264849919&uo=4"}}},{"id":"khwaja-mere-khwaja","title":"Khwaja Mere Khwaja","artist":"A.R. Rahman","album":"Jodhaa Akbar (Original Motion Picture Soundtrack)","releaseYear":2001,"genre":"Hindi Sufi","language":"Hindi","moods":["focus-radio","chill-radio"],"categories":["hindi-sufi"],"sets":[],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/ad/89/25ad8924-f933-e7fd-a0aa-17305e14eb2d/886448872016.jpg/600x600bb.jpg","durationSec":417,"hookStartSec":40,"sources":{"youtube":{"videoId":"4YbAaRFk70o","channelName":"SonyMusicIndiaVEVO","officialUrl":"https://www.youtube.com/watch?v=4YbAaRFk70o","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/cb/5a/e0/cb5ae07f-d639-6656-8a38-e203223045b2/mzaf_6569703129183494087.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/khwaja-mere-khwaja/1537961309?i=1537961313&uo=4"}}},{"id":"afreen-afreen","title":"Afreen Afreen","artist":"Rahat Fateh Ali Khan & Momina Mustehsan","album":"Afreen Afreen (Coke Studio Season 9) - Single","releaseYear":2016,"genre":"Sufi Acoustic","language":"Hindi","moods":["romantic-radio","chill-radio"],"categories":["hindi-sufi","hindi-romantic"],"sets":["romantic-evening"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music71/v4/95/ff/b0/95ffb0d1-ba72-767e-a4e4-6e7989524b03/190394811402.jpg/600x600bb.jpg","durationSec":400,"hookStartSec":45,"sources":{"youtube":{"videoId":"kw4tT7SCmaY","channelName":"Coke Studio Pakistan","officialUrl":"https://www.youtube.com/watch?v=kw4tT7SCmaY","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/76/41/69/764169b7-e99f-2590-2035-042592466071/mzaf_15909503068668647721.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/afreen-afreen-coke-studio-season-9/1150347362?i=1150347366&uo=4"}}},{"id":"apna-time-aayega","title":"Apna Time Aayega","artist":"Ranveer Singh & DIVINE","album":"Gully Boy (Original Motion Picture Soundtrack)","releaseYear":2019,"genre":"Desi Hip-Hop","language":"Hindi","moods":["workout-radio","party-radio"],"categories":["hindi-hip-hop"],"sets":["gym-session","college-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/5e/60/3a5e6034-8755-f0bf-d4f0-c7f96d3b45bb/8718857674948.png/600x600bb.jpg","durationSec":140,"hookStartSec":28,"sources":{"youtube":{"videoId":"jFGKJBPFdUA","channelName":"Zee Music Company","officialUrl":"https://www.youtube.com/watch?v=jFGKJBPFdUA","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a1/63/58/a1635896-5507-40f7-d6d4-bab46ff3dd67/mzaf_5279779209946689751.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/apna-time-aayega/1529556349?i=1529556364&uo=4"}}},{"id":"mirchi","title":"Mirchi","artist":"DIVINE ft. Stylo G, MC Altaf & Phenom","album":"Mirchi (feat. MC Altaf, Stylo G & Phenom) - Single","releaseYear":2020,"genre":"Desi Hip-Hop","language":"Hindi","moods":["party-radio","workout-radio"],"categories":["hindi-hip-hop"],"sets":["college-party","house-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ae/a1/1b/aea11bad-10ae-96d4-5212-e3b0db53bedd/20UMGIM89461.rgb.jpg/600x600bb.jpg","durationSec":193,"hookStartSec":25,"sources":{"youtube":{"videoId":"w5Aioq5VYF0","channelName":"DIVINE","officialUrl":"https://www.youtube.com/watch?v=w5Aioq5VYF0","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/21/88/cd/2188cd88-bde4-5958-5d8c-1d366eb5930e/mzaf_4740066004162575331.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/mirchi-feat-mc-altaf-stylo-g-phenom/1535314469?i=1535314471&uo=4"}}},{"id":"kohinoor","title":"Kohinoor","artist":"DIVINE","album":"Kohinoor","releaseYear":2019,"genre":"Desi Hip-Hop","language":"Hindi","moods":["workout-radio","night-drive"],"categories":["hindi-hip-hop"],"sets":["gym-session","road-trip"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/b4/1e/0e/b41e0e6b-4808-171c-52fd-62282e366a5b/19UMGIM88313.rgb.jpg/600x600bb.jpg","durationSec":199,"hookStartSec":30,"sources":{"youtube":{"videoId":"7dt9LvdSdIA","channelName":"Mass Appeal India","officialUrl":"https://www.youtube.com/watch?v=7dt9LvdSdIA","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/3f/22/4a/3f224a77-6500-b898-d6ad-942a21d5ce61/mzaf_10646169288489533529.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/kohinoor/1481977846?i=1481978102&uo=4"}}},{"id":"mere-gully-mein","title":"Mere Gully Mein","artist":"Ranveer Singh, DIVINE & Naezy","album":"Gully Boy (Original Motion Picture Soundtrack)","releaseYear":2019,"genre":"Desi Hip-Hop","language":"Hindi","moods":["party-radio","workout-radio"],"categories":["hindi-hip-hop"],"sets":["college-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/5e/60/3a5e6034-8755-f0bf-d4f0-c7f96d3b45bb/8718857674948.png/600x600bb.jpg","durationSec":185,"hookStartSec":26,"sources":{"youtube":{"videoId":"pGmbUdf6lEM","channelName":"Zee Music Company","officialUrl":"https://www.youtube.com/watch?v=pGmbUdf6lEM","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/da/67/69/da67692c-8e6f-7ef1-ba30-7fb48fdae7b9/mzaf_5639533648778078727.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/mere-gully-mein/1529556349?i=1529556351&uo=4"}}},{"id":"brown-munde","title":"Brown Munde","artist":"AP Dhillon, Gurinder Gill & Shinda Kahlon","album":"Brown Munde - Single","releaseYear":2020,"genre":"Punjabi Urban","language":"Punjabi","moods":["party-radio","night-drive","workout-radio"],"categories":["punjabi-party","punjabi-workout"],"sets":["punjabi-night","house-party","road-trip","college-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/a3/ac/26a3ac64-69e4-95ec-80ab-1f5a477537d2/859742042973_cover.jpg/600x600bb.jpg","durationSec":254,"hookStartSec":28,"sources":{"youtube":{"videoId":"VNs_cCtdbPc","channelName":"APDHILLON","officialUrl":"https://www.youtube.com/watch?v=VNs_cCtdbPc","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/97/74/69/977469be-a9d5-35a7-80ad-ebe12a799ccc/mzaf_804867738726203367.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/brown-munde/1531596344?i=1531596345&uo=4"}}},{"id":"excuses","title":"Excuses","artist":"AP Dhillon, Gurinder Gill & Intense","album":"Excuses - Single","releaseYear":2020,"genre":"Punjabi Urban","language":"Punjabi","moods":["night-drive","party-radio"],"categories":["punjabi-party"],"sets":["punjabi-night","road-trip"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/47/47/ac/4747ac85-1658-64ae-bc82-220a4d6213d5/859747478890_cover.jpg/600x600bb.jpg","durationSec":176,"hookStartSec":26,"sources":{"youtube":{"videoId":"vX2cDW8LUWk","channelName":"Intense","officialUrl":"https://www.youtube.com/watch?v=vX2cDW8LUWk","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e8/84/c8/e884c82f-7136-54d8-6754-6b45c6968f29/mzaf_11726474689882106813.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/excuses/1588418741?i=1588418743&uo=4"}}},{"id":"tauba-tauba","title":"Tauba Tauba","artist":"Karan Aujla","album":"Tauba Tauba (From \"Bad Newz\") - Single","releaseYear":2024,"genre":"Punjabi Pop","language":"Punjabi","moods":["party-radio","happy-radio"],"categories":["punjabi-party","bollywood-party"],"sets":["punjabi-night","house-party","bollywood-night"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/79/d2/01/79d201d2-e54d-5604-81fb-313f30db7219/198588533581.jpg/600x600bb.jpg","durationSec":207,"hookStartSec":30,"sources":{"youtube":{"videoId":"LK7-_dgAVQE","channelName":"Saregama Music","officialUrl":"https://www.youtube.com/watch?v=LK7-_dgAVQE","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/34/8d/63/348d6342-2c35-bf31-8131-2c8b3cfe3c09/mzaf_15374551219149804677.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/tauba-tauba-from-bad-newz/1754562143?i=1754562159&uo=4"}}},{"id":"softly","title":"Softly","artist":"Karan Aujla & Ikky","album":"Making Memories","releaseYear":2023,"genre":"Punjabi Pop","language":"Punjabi","moods":["chill-radio","night-drive","happy-radio"],"categories":["punjabi-party"],"sets":["punjabi-night","road-trip"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d3/08/bc/d308bc6a-20e1-6532-d933-35d1b429210e/5054197755538.jpg/600x600bb.jpg","durationSec":155,"hookStartSec":28,"sources":{"youtube":{"videoId":"cWMxCE2HTag","channelName":"Karan Aujla","officialUrl":"https://www.youtube.com/watch?v=cWMxCE2HTag","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/5f/6f/01/5f6f0130-6567-22d4-bc1a-5ccb359c3fac/mzaf_5497113703334703756.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/softly/1697533643?i=1697533818&uo=4"}}},{"id":"gallan-goodiyaan","title":"Gallan Goodiyaan","artist":"Yashita Sharma, Farhan Akhtar & Shankar Mahadevan","album":"Dil Dhadakne Do (Original Motion Picture Soundtrack)","releaseYear":2015,"genre":"Punjabi Wedding","language":"Punjabi","moods":["happy-radio","party-radio"],"categories":["punjabi-wedding","bollywood-party"],"sets":["wedding-dance","birthday-party","bollywood-night"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/1c/f1/49/1cf149ad-2e46-cb6d-642c-4f7103b77dc8/8902894357036_cover.jpg/600x600bb.jpg","durationSec":297,"hookStartSec":34,"sources":{"youtube":{"videoId":"jCEdTq3j-0U","channelName":"T-Series","officialUrl":"https://www.youtube.com/watch?v=jCEdTq3j-0U","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0a/b1/65/0ab165c2-5461-139b-3361-43d39f4f7f77/mzaf_13810064433892693288.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/gallan-goodiyaan/1071191851?i=1071192712&uo=4"}}},{"id":"laung-laachi","title":"Laung Laachi","artist":"Mannat Noor","album":"Laung Laachi (Original Motion Picture Soundtrack)","releaseYear":2018,"genre":"Punjabi Folk Pop","language":"Punjabi","moods":["happy-radio","party-radio"],"categories":["punjabi-wedding","punjabi-party"],"sets":["wedding-dance","punjabi-night"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/41/30/d8/4130d805-a06b-7a88-efd1-acc7fd1274a8/8903431669490_cover.jpg/600x600bb.jpg","durationSec":161,"hookStartSec":25,"sources":{"youtube":{"videoId":"YpkJO_GrCo0","channelName":"T-Series Apna Punjab","officialUrl":"https://www.youtube.com/watch?v=YpkJO_GrCo0","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/16/47/9b/16479bc2-a34a-0b72-7488-a2261d3eacbb/mzaf_6305039084014036831.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/laung-laachi-title-track/1356564907?i=1356565549&uo=4"}}},{"id":"sadi-gali","title":"Sadi Gali","artist":"Lehmber Hussainpuri","album":"Tanu Weds Manu (Original Motion Picture Soundtrack)","releaseYear":2011,"genre":"Punjabi Wedding","language":"Punjabi","moods":["party-radio","happy-radio"],"categories":["punjabi-wedding","punjabi-bhangra"],"sets":["wedding-dance","punjabi-night","birthday-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/1a/5f/48/1a5f4834-59b0-c7c8-d8fd-995b1c5e5e60/8902894694032_cover.jpg/600x600bb.jpg","durationSec":265,"hookStartSec":32,"sources":{"youtube":{"videoId":"w_HaezV0DqI","channelName":"T-Series","officialUrl":"https://www.youtube.com/watch?v=w_HaezV0DqI","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/af/63/02/af630221-e849-8d2f-f279-a8159cec4c19/mzaf_1012138708851747762.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/sadi-gali/1122150562?i=1122150647&uo=4"}}},{"id":"morni-banke","title":"Morni Banke","artist":"Guru Randhawa & Neha Kakkar","album":"Badhaai Ho (Original Motion Picture Soundtrack)","releaseYear":2018,"genre":"Punjabi Wedding","language":"Punjabi","moods":["party-radio","happy-radio"],"categories":["punjabi-wedding","punjabi-party"],"sets":["wedding-dance","birthday-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/4c/a2/fa/4ca2fa52-4aff-9a11-cdf4-4c71e6429eff/8902894360494_cover.jpg/600x600bb.jpg","durationSec":198,"hookStartSec":28,"sources":{"youtube":{"videoId":"MhgURCPNoD0","channelName":"T-Series","officialUrl":"https://www.youtube.com/watch?v=MhgURCPNoD0","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/41/08/f7/4108f738-5d75-ff53-1dcc-e66a858bd6df/mzaf_11800009458843134496.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/morni-banke/1439673788?i=1439673822&uo=4"}}},{"id":"qismat","title":"Qismat","artist":"Ammy Virk","album":"Qismat - Single (feat. Sargun Mehta) - Single","releaseYear":2017,"genre":"Punjabi Ballad","language":"Punjabi","moods":["sad-radio","romantic-radio"],"categories":["punjabi-sad"],"sets":[],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/44/b0/87/44b08790-5f24-b9a0-2204-7ac5215658d3/8902633272507.jpg/600x600bb.jpg","durationSec":244,"hookStartSec":36,"sources":{"youtube":{"videoId":"9xVp8m0fJSg","channelName":"Speed Records","officialUrl":"https://www.youtube.com/watch?v=9xVp8m0fJSg","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/8d/f6/02/8df60285-5029-6ac5-88ff-b3a0198b2cf7/mzaf_9412445161708057168.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/qismat-feat-sargun-mehta/1418051669?i=1418051735&uo=4"}}},{"id":"mann-bharrya","title":"Mann Bharrya","artist":"B Praak","album":"Mann Bharrya - Single","releaseYear":2017,"genre":"Punjabi Ballad","language":"Punjabi","moods":["sad-radio"],"categories":["punjabi-sad"],"sets":[],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d3/5d/94/d35d94b7-46bb-8ce3-72a4-b1e3c81043ad/8902633271111.jpg/600x600bb.jpg","durationSec":277,"hookStartSec":40,"sources":{"youtube":{"videoId":"YrUqw7uspKg","channelName":"Speed Records","officialUrl":"https://www.youtube.com/watch?v=YrUqw7uspKg","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f1/64/ec/f164ec6e-1375-d394-8af2-4e3237e570b8/mzaf_3327102598024940466.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/mann-bharrya/1418558878?i=1418559048&uo=4"}}},{"id":"soch","title":"Soch","artist":"Harrdy Sandhu","album":"Soch - Single","releaseYear":2013,"genre":"Punjabi Ballad","language":"Punjabi","moods":["sad-radio","romantic-radio"],"categories":["punjabi-sad"],"sets":[],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ff/e3/bd/ffe3bdfa-ecaa-85ba-99d4-dd3c89b1c945/8902894354905_cover.jpg/600x600bb.jpg","durationSec":347,"hookStartSec":35,"sources":{"youtube":{"videoId":"E8rpY2FwKkY","channelName":"T-Series Apna Punjab","officialUrl":"https://www.youtube.com/watch?v=E8rpY2FwKkY","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/65/8f/e4/658fe4b4-207f-71a2-8aad-d063e7c16d4f/mzaf_12662436654393664330.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/soch/1158554764?i=1158554778&uo=4"}}},{"id":"filhall","title":"Filhall","artist":"B Praak","album":"Filhall (feat. Akshay Kumar & Nupur Sanon) - Single","releaseYear":2019,"genre":"Punjabi Ballad","language":"Punjabi","moods":["sad-radio"],"categories":["punjabi-sad"],"sets":[],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9d/da/9a/9dda9a1e-bf43-1726-29f6-bd3e30b8fe90/20UMGIM63902.rgb.jpg/600x600bb.jpg","durationSec":255,"hookStartSec":42,"sources":{"youtube":{"videoId":"hMy5za-m5Ew","channelName":"DM - Desi Melodies","officialUrl":"https://www.youtube.com/watch?v=hMy5za-m5Ew","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f1/ef/37/f1ef37ae-4abb-83a7-0e47-95b00525e97c/mzaf_3839429326446909841.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/filhall-feat-akshay-kumar-nupur-sanon/1525344734?i=1525344736&uo=4"}}},{"id":"cheques","title":"Cheques","artist":"Shubh","album":"Still Rollin","releaseYear":2023,"genre":"Punjabi Hip-Hop","language":"Punjabi","moods":["workout-radio","night-drive"],"categories":["punjabi-workout","punjabi-party"],"sets":["gym-session","punjabi-night"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/dc/46/a9/dc46a9c9-794e-2d7a-1afb-97eb4ae0fff6/197188915704.jpg/600x600bb.jpg","durationSec":184,"hookStartSec":24,"sources":{"youtube":{"videoId":"4tywp83zkmk","channelName":"SHUBH","officialUrl":"https://www.youtube.com/watch?v=4tywp83zkmk","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/5f/e9/8a/5fe98aa5-660a-2f91-b53d-558fdb9ef50b/mzaf_5845186979219129320.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/cheques/1687649537?i=1687649562&uo=4"}}},{"id":"still-rollin","title":"Still Rollin","artist":"Shubh","album":"Still Rollin","releaseYear":2023,"genre":"Punjabi Hip-Hop","language":"Punjabi","moods":["workout-radio","night-drive"],"categories":["punjabi-workout","punjabi-party"],"sets":["gym-session","road-trip"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/dc/46/a9/dc46a9c9-794e-2d7a-1afb-97eb4ae0fff6/197188915704.jpg/600x600bb.jpg","durationSec":175,"hookStartSec":24,"sources":{"youtube":{"videoId":"0mCVpUDCkEk","channelName":"SHUBH","officialUrl":"https://www.youtube.com/watch?v=0mCVpUDCkEk","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/66/8a/04/668a0423-3b9e-10af-9118-af173fb5a127/mzaf_18037249437587947297.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/still-rollin/1687649537?i=1687649546&uo=4"}}},{"id":"tunak-tunak-tun","title":"Tunak Tunak Tun","artist":"Daler Mehndi","album":"Tunak Tunak Tun","releaseYear":1998,"genre":"Bhangra","language":"Punjabi","moods":["happy-radio","party-radio"],"categories":["punjabi-bhangra"],"sets":["punjabi-night","wedding-dance","birthday-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fc/58/90/fc5890ed-f6ea-937f-c0f8-35d9fcce0f57/886443869547.jpg/600x600bb.jpg","durationSec":303,"hookStartSec":28,"sources":{"youtube":{"videoId":"QoEONbxXWIQ","channelName":"Sony Music India","officialUrl":"https://www.youtube.com/watch?v=QoEONbxXWIQ","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/1a/fb/ce/1afbce13-b83b-a883-4ad3-13867039b396/mzaf_4880266552559677028.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/tunak-tunak-tun/604814335?i=604814341&uo=4"}}},{"id":"mundian-to-bach-ke","title":"Mundian To Bach Ke","artist":"Panjabi MC","album":"Mundian to Bach Ke - Single","releaseYear":2002,"genre":"Bhangra","language":"Punjabi","moods":["party-radio","workout-radio"],"categories":["punjabi-bhangra","punjabi-party"],"sets":["punjabi-night","house-party","college-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/99/5a/97/995a9720-0aa4-19a9-8922-87c6c6c0a938/8718274959611.png/600x600bb.jpg","durationSec":246,"hookStartSec":26,"sources":{"youtube":{"videoId":"x9WO2ieJMYk","channelName":"Altra Moda Music","officialUrl":"https://www.youtube.com/watch?v=x9WO2ieJMYk","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d2/87/3c/d2873c27-86f0-b349-be98-cdab1429fc7e/mzaf_9981002874427167582.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/mundian-to-bach-ke/1671313139?i=1671313140&uo=4"}}},{"id":"amplifier","title":"Amplifier","artist":"Imran Khan","album":"Unforgettable - Sped Up","releaseYear":2009,"genre":"Punjabi Urban","language":"Punjabi","moods":["night-drive","party-radio"],"categories":["punjabi-bhangra","punjabi-party"],"sets":["punjabi-night","road-trip","college-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d8/8e/9f/d88e9fc2-f509-62db-0d70-062fe453809b/5059552579187.jpg/600x600bb.jpg","durationSec":192,"hookStartSec":28,"sources":{"youtube":{"videoId":"uuCFRaFWjwY","channelName":"imrankhanworld","officialUrl":"https://www.youtube.com/watch?v=uuCFRaFWjwY","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c8/c1/2e/c8c12eb1-19b4-f66f-2b74-8463ac7402e3/mzaf_14739664157299237264.plus.aac.p.m4a","officialUrl":"https://music.apple.com/in/album/amplifier-sped-up/1737462083?i=1737462088&uo=4"}}},{"id":"high-rated-gabru","title":"High Rated Gabru","artist":"Guru Randhawa","album":"High Rated Gabru - Single","releaseYear":2017,"genre":"Punjabi Pop","language":"Punjabi","moods":["happy-radio","party-radio"],"categories":["punjabi-bhangra","punjabi-party"],"sets":["punjabi-night","birthday-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/9c/d5/f4/9cd5f417-3477-0f42-c9ff-5da0314fe724/8903431647344_cover.jpg/600x600bb.jpg","durationSec":214,"hookStartSec":25,"sources":{"youtube":{"videoId":"hjWf8A0YNSE","channelName":"T-Series","officialUrl":"https://www.youtube.com/watch?v=hjWf8A0YNSE","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d3/a0/fe/d3a0fe8d-1004-93bc-5746-363dd3284dc0/mzaf_14362248372762399838.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/high-rated-gabru/1254412548?i=1254412550&uo=4"}}},{"id":"lose-yourself","title":"Lose Yourself","artist":"Eminem","album":"8 Mile (Music from and Inspired By the Motion Picture)","releaseYear":2002,"genre":"Hip-Hop","language":"English","moods":["workout-radio"],"categories":["english-hip-hop"],"sets":["gym-session","english-club-hits"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/08/23/fc/0823fcd9-cb44-695b-32bf-b3bf51d9f800/00606949351229.rgb.jpg/600x600bb.jpg","durationSec":322,"hookStartSec":50,"sources":{"youtube":{"videoId":"xFYQQPAOz7Y","channelName":"EminemMusic","officialUrl":"https://www.youtube.com/watch?v=xFYQQPAOz7Y","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/13/5a/61/135a6154-8ca2-0523-1fa2-f4ac0ea9e1e7/mzaf_13242749689945681184.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/lose-yourself/1440903339?i=1440903439&uo=4"}}},{"id":"humble","title":"HUMBLE.","artist":"Kendrick Lamar","album":"DAMN.","releaseYear":2017,"genre":"Hip-Hop","language":"English","moods":["workout-radio","party-radio"],"categories":["english-hip-hop"],"sets":["gym-session","college-party","english-club-hits"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ab/16/ef/ab16efe9-e7f1-66ec-021c-5592a23f0f9e/17UMGIM88793.rgb.jpg/600x600bb.jpg","durationSec":177,"hookStartSec":25,"sources":{"youtube":{"videoId":"tvTRZJ-4EyI","channelName":"KendrickLamarVEVO","officialUrl":"https://www.youtube.com/watch?v=tvTRZJ-4EyI","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/1f/2e/37/1f2e37be-bdd0-d770-6ea4-091011a6aade/mzaf_2360827885900940865.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/humble/1440881722?i=1440882165&uo=4"}}},{"id":"sunflower","title":"Sunflower","artist":"Post Malone & Swae Lee","album":"Spider-Man: Into the Spider-Verse (Soundtrack From & Inspired by the Motion Picture)","releaseYear":2018,"genre":"Melodic Hip-Hop","language":"English","moods":["chill-radio","happy-radio","night-drive"],"categories":["english-hip-hop","english-pop"],"sets":["road-trip"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4b/30/2c/4b302cb6-7a14-5464-4e97-0577e9d0be49/18UMGIM82277.rgb.jpg/600x600bb.jpg","durationSec":158,"hookStartSec":28,"sources":{"youtube":{"videoId":"ApXoWvfEYVU","channelName":"PostMaloneVEVO","officialUrl":"https://www.youtube.com/watch?v=ApXoWvfEYVU","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/98/f0/d6/98f0d67e-f8bf-762d-cac7-1c6b3b6b35dd/mzaf_4543283896248560946.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/sunflower-spider-man-into-the-spider-verse/1445949265?i=1445949267&uo=4"}}},{"id":"gods-plan","title":"Gods Plan","artist":"Drake","album":"Scorpion","releaseYear":2018,"genre":"Hip-Hop","language":"English","moods":["night-drive","chill-radio"],"categories":["english-hip-hop"],"sets":["house-party","english-club-hits"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bb/6d/8f/bb6d8f67-6d04-10b5-dd62-eb5809ac54fc/00602567879152.rgb.jpg/600x600bb.jpg","durationSec":199,"hookStartSec":32,"sources":{"youtube":{"videoId":"xpVfcZ0ZcFM","channelName":"DrakeVEVO","officialUrl":"https://www.youtube.com/watch?v=xpVfcZ0ZcFM","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c6/4a/be/c64abe74-adb4-cff5-005d-0fab3d72a806/mzaf_10276154697254415719.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/gods-plan/1406109769?i=1406109863&uo=4"}}},{"id":"blinding-lights","title":"Blinding Lights","artist":"The Weeknd","album":"Blinding Lights (Remix) - Single","releaseYear":2020,"genre":"Synth-Pop","language":"English","moods":["night-drive","workout-radio","party-radio"],"categories":["english-pop","english-party-hits"],"sets":["road-trip","english-club-hits","house-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/61/e7/3f/61e73f94-018d-5f50-50ec-8521952bc72e/20UM1IM11629.rgb.jpg/600x600bb.jpg","durationSec":216,"hookStartSec":28,"sources":{"youtube":{"videoId":"4NRXx6U8ABQ","channelName":"TheWeekndVEVO","officialUrl":"https://www.youtube.com/watch?v=4NRXx6U8ABQ","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/12/73/ca/1273ca46-233a-5331-189b-25ac1d656533/mzaf_976341070785891411.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/blinding-lights-remix/1542842760?i=1542842761&uo=4"}}},{"id":"levitating","title":"Levitating","artist":"Dua Lipa","album":"Future Nostalgia","releaseYear":2020,"genre":"Dance Pop","language":"English","moods":["happy-radio","party-radio"],"categories":["english-pop","english-party-hits"],"sets":["house-party","birthday-party","english-club-hits"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/600x600bb.jpg","durationSec":204,"hookStartSec":30,"sources":{"youtube":{"videoId":"TUVcZfQe-Kw","channelName":"Dua Lipa","officialUrl":"https://www.youtube.com/watch?v=TUVcZfQe-Kw","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/59/dc/4d/59dc4dda-93ff-8f1c-c536-f005f6ea6af5/mzaf_3066686759813252385.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/levitating/1538003494?i=1538003843&uo=4"}}},{"id":"as-it-was","title":"As It Was","artist":"Harry Styles","album":"Harry's House","releaseYear":2022,"genre":"Synth-Pop","language":"English","moods":["happy-radio","chill-radio"],"categories":["english-pop"],"sets":["road-trip","birthday-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2a/19/fb/2a19fb85-2f70-9e44-f2a9-82abe679b88e/886449990061.jpg/600x600bb.jpg","durationSec":167,"hookStartSec":26,"sources":{"youtube":{"videoId":"H5v3kku4y6Q","channelName":"HarryStylesVEVO","officialUrl":"https://www.youtube.com/watch?v=H5v3kku4y6Q","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/67/10/16/67101606-3869-ca44-6c03-e13d6322cb51/mzaf_1135399237022217274.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/as-it-was/1615584999?i=1615585008&uo=4"}}},{"id":"shape-of-you","title":"Shape of You","artist":"Ed Sheeran","album":"÷ (Deluxe)","releaseYear":2017,"genre":"Pop","language":"English","moods":["happy-radio","workout-radio"],"categories":["english-pop","english-party-hits"],"sets":["birthday-party","english-club-hits"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/600x600bb.jpg","durationSec":234,"hookStartSec":30,"sources":{"youtube":{"videoId":"JGwWNGJdvx8","channelName":"Ed Sheeran","officialUrl":"https://www.youtube.com/watch?v=JGwWNGJdvx8","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/44/c7/4f/44c74f0d-72dc-6143-d4d0-ba14d661ca0d/mzaf_9566898362556366703.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/shape-of-you/1193701079?i=1193701392&uo=4"}}},{"id":"perfect","title":"Perfect","artist":"Ed Sheeran","album":"÷ (Deluxe)","releaseYear":2017,"genre":"Pop Ballad","language":"English","moods":["romantic-radio"],"categories":["english-love-songs"],"sets":["romantic-evening","wedding-dance"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/600x600bb.jpg","durationSec":263,"hookStartSec":42,"sources":{"youtube":{"videoId":"2Vv-BfVoq4g","channelName":"Ed Sheeran","officialUrl":"https://www.youtube.com/watch?v=2Vv-BfVoq4g","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c7/ba/bc/c7babc66-f598-aaa6-bcf6-307281795817/mzaf_16337361235117168274.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/perfect/1193701079?i=1193701400&uo=4"}}},{"id":"all-of-me","title":"All of Me","artist":"John Legend","album":"Love in the Future (Expanded Edition)","releaseYear":2013,"genre":"R&B Ballad","language":"English","moods":["romantic-radio","sad-radio"],"categories":["english-love-songs"],"sets":["romantic-evening"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/22/71/b9/2271b906-85b3-06ee-e611-489b91df0b73/886444160742.jpg/600x600bb.jpg","durationSec":270,"hookStartSec":40,"sources":{"youtube":{"videoId":"450p7goxZqg","channelName":"johnlegendVEVO","officialUrl":"https://www.youtube.com/watch?v=450p7goxZqg","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ff/94/6c/ff946ca7-e49a-fdf8-ea5b-11e6f56a0417/mzaf_17369156110722174773.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/all-of-me/1441844369?i=1441844542&uo=4"}}},{"id":"die-with-a-smile","title":"Die With A Smile","artist":"Lady Gaga & Bruno Mars","album":"Die With A Smile - Single","releaseYear":2024,"genre":"Pop Soul","language":"English","moods":["romantic-radio"],"categories":["english-love-songs","english-pop"],"sets":["romantic-evening"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/11/ae/f2/11aef294-f57c-bab9-c9fc-529162984e62/24UMGIM85348.rgb.jpg/600x600bb.jpg","durationSec":252,"hookStartSec":38,"sources":{"youtube":{"videoId":"kPa7bsKwL-c","channelName":"LadyGagaVEVO","officialUrl":"https://www.youtube.com/watch?v=kPa7bsKwL-c","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/07/6a/99/076a99ed-b946-431b-6f1f-54fa187ca5bd/mzaf_8102882277995122875.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/die-with-a-smile/1762656724?i=1762656732&uo=4"}}},{"id":"thinking-out-loud","title":"Thinking Out Loud","artist":"Ed Sheeran","album":"x (Wembley Edition)","releaseYear":2014,"genre":"Acoustic Soul","language":"English","moods":["romantic-radio","chill-radio"],"categories":["english-love-songs"],"sets":["romantic-evening","wedding-dance"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2d/36/f9/2d36f9a7-2c3e-ce0f-7fb6-036feecb221f/825646974450.jpg/600x600bb.jpg","durationSec":282,"hookStartSec":36,"sources":{"youtube":{"videoId":"lp-EO5I60KA","channelName":"Ed Sheeran","officialUrl":"https://www.youtube.com/watch?v=lp-EO5I60KA","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/78/a5/f2/78a5f25e-ad1b-718d-82ad-b82e676c1855/mzaf_6133970271589343093.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/thinking-out-loud/1050204616?i=1050204631&uo=4"}}},{"id":"wake-me-up","title":"Wake Me Up","artist":"Avicii","album":"True","releaseYear":2013,"genre":"Progressive House","language":"English","moods":["happy-radio","workout-radio","party-radio"],"categories":["english-edm","english-party-hits"],"sets":["english-club-hits","road-trip","college-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/18/5b/1e/185b1ef5-5d97-19d8-aebf-8e29e41874ef/13UAAIM59255.rgb.jpg/600x600bb.jpg","durationSec":250,"hookStartSec":45,"sources":{"youtube":{"videoId":"IcrbM1l_BoI","channelName":"AviciiOfficialVEVO","officialUrl":"https://www.youtube.com/watch?v=IcrbM1l_BoI","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/68/1e/60/681e601f-e1f2-4ebb-37de-adf00bdf57b6/mzaf_8266263075137964740.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/wake-me-up/1440872730?i=1440872929&uo=4"}}},{"id":"titanium","title":"Titanium","artist":"David Guetta ft. Sia","album":"Nothing But the Beat","releaseYear":2011,"genre":"EDM","language":"English","moods":["workout-radio","party-radio"],"categories":["english-edm"],"sets":["gym-session","english-club-hits"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/99/b4/7b/99b47bd8-2b22-e1ef-2e60-c5147f27a861/dj.thrvmjqj.jpg/600x600bb.jpg","durationSec":245,"hookStartSec":44,"sources":{"youtube":{"videoId":"JRfuAukYTKg","channelName":"David Guetta","officialUrl":"https://www.youtube.com/watch?v=JRfuAukYTKg","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/45/dd/8f/45dd8ffc-0164-1f70-c53d-bf91a1d80b1a/mzaf_3092057092144618662.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/titanium-feat-sia/693225996?i=693226464&uo=4"}}},{"id":"dont-you-worry-child","title":"Dont You Worry Child","artist":"Swedish House Mafia ft. John Martin","album":"Don't You Worry Child (feat. John Martin) - EP","releaseYear":2012,"genre":"Progressive House","language":"English","moods":["party-radio","happy-radio"],"categories":["english-edm","english-party-hits"],"sets":["english-club-hits","college-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/7a/a0/33/7aa0335b-167b-c15a-fcac-22e22ed2ea03/5099997933755.jpg/600x600bb.jpg","durationSec":258,"hookStartSec":46,"sources":{"youtube":{"videoId":"1y6smkh6c-0","channelName":"SHMVEVO","officialUrl":"https://www.youtube.com/watch?v=1y6smkh6c-0","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/77/06/19/77061943-7598-9d06-d1d4-7fe6e4b89a7c/mzaf_9832849938043881705.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/dont-you-worry-child-feat-john-martin-acoustic-version/6798736826?i=6798736835&uo=4"}}},{"id":"levels-avicii","title":"Levels","artist":"Avicii","album":"Levels - EP","releaseYear":2011,"genre":"EDM","language":"English","moods":["party-radio","workout-radio"],"categories":["english-edm"],"sets":["english-club-hits","gym-session","house-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/67/38/43/67384338-9ed7-fc68-5927-93f1fcf4705d/11UMGIM36900.rgb.jpg/600x600bb.jpg","durationSec":339,"hookStartSec":32,"sources":{"youtube":{"videoId":"_ovdm2yX4MA","channelName":"AviciiOfficialVEVO","officialUrl":"https://www.youtube.com/watch?v=_ovdm2yX4MA","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/66/dc/bd/66dcbd68-b557-bdfd-f2c2-a05491758783/mzaf_13654489760720011690.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/levels/1440787344?i=1440787349&uo=4"}}},{"id":"uptown-funk","title":"Uptown Funk","artist":"Mark Ronson ft. Bruno Mars","album":"Uptown Special","releaseYear":2014,"genre":"Funk Pop","language":"English","moods":["happy-radio","party-radio"],"categories":["english-party-hits","english-pop"],"sets":["house-party","birthday-party","english-club-hits"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7e/30/c5/7e30c572-aa47-5f7b-c6fd-42d50cd2c56d/886444959797.jpg/600x600bb.jpg","durationSec":270,"hookStartSec":34,"sources":{"youtube":{"videoId":"OPf0YbXqDm0","channelName":"MarkRonsonVEVO","officialUrl":"https://www.youtube.com/watch?v=OPf0YbXqDm0","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/91/99/1f/91991fe5-aa77-87e4-edbc-6d68c95e5f18/mzaf_10685317694850942114.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/uptown-funk-feat-bruno-mars/943946661?i=943946671&uo=4"}}},{"id":"cant-stop-the-feeling","title":"Cant Stop the Feeling!","artist":"Justin Timberlake","album":"TROLLS (Original Motion Picture Soundtrack)","releaseYear":2016,"genre":"Dance Pop","language":"English","moods":["happy-radio","party-radio"],"categories":["english-party-hits","english-pop"],"sets":["birthday-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/68/19/43/68194388-efa7-3afe-8a15-a4c3eebef1f6/886445915211.jpg/600x600bb.jpg","durationSec":238,"hookStartSec":32,"sources":{"youtube":{"videoId":"ru0K8uYEZWw","channelName":"justintimberlakeVEVO","officialUrl":"https://www.youtube.com/watch?v=ru0K8uYEZWw","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/86/41/2d/86412d20-2f4d-39fc-221b-3f643d7c99c6/mzaf_9909715182585785919.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/cant-stop-the-feeling/1154238159?i=1154239184&uo=4"}}},{"id":"party-rock-anthem","title":"Party Rock Anthem","artist":"LMFAO","album":"Sorry for Party Rocking (Deluxe Version)","releaseYear":2011,"genre":"Electro House","language":"English","moods":["party-radio","workout-radio"],"categories":["english-party-hits","english-edm"],"sets":["house-party","college-party","birthday-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/21/d9/07/21d9076e-a52c-4f94-5176-011a9ec878e7/11UMGIM14032.rgb.jpg/600x600bb.jpg","durationSec":262,"hookStartSec":38,"sources":{"youtube":{"videoId":"KQ6zr6kCPj8","channelName":"LMFAOVEVO","officialUrl":"https://www.youtube.com/watch?v=KQ6zr6kCPj8","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/fe/63/a1/fe63a1b8-091f-9d45-594f-bb982166297f/mzaf_8877172162075707701.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/party-rock-anthem-feat-lauren-bennett-goonrock/1440636622?i=1440636627&uo=4"}}},{"id":"i-gotta-feeling","title":"I Gotta Feeling","artist":"Black Eyed Peas","album":"THE E.N.D. (THE ENERGY NEVER DIES)","releaseYear":2009,"genre":"Dance Pop","language":"English","moods":["happy-radio","party-radio"],"categories":["english-party-hits"],"sets":["house-party","birthday-party","english-club-hits"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/42/fc/47/42fc4794-3c69-8c00-e528-1c7e92b5ac93/09UMGIM13833.rgb.jpg/600x600bb.jpg","durationSec":289,"hookStartSec":36,"sources":{"youtube":{"videoId":"uSD4vsh1zDA","channelName":"BlackEyedPeasVEVO","officialUrl":"https://www.youtube.com/watch?v=uSD4vsh1zDA","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/88/5e/6a/885e6adb-f307-d849-a3e0-47280088b5a4/mzaf_12588254824919596992.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/i-gotta-feeling/1440768902?i=1440769310&uo=4"}}},{"id":"weightless","title":"Weightless","artist":"Marconi Union","album":"The Ambient Zone Just Music Cafe, Vol. 4","releaseYear":2011,"genre":"Ambient","language":"English","moods":["focus-radio","chill-radio"],"categories":[],"sets":[],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c3/3a/d6/c33ad6a3-ec91-62e4-0912-d4a873d4fed0/cover.jpg/600x600bb.jpg","durationSec":480,"hookStartSec":20,"sources":{"youtube":{"videoId":"UfcAVejslrU","channelName":"JustMusicTV","officialUrl":"https://www.youtube.com/watch?v=UfcAVejslrU","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/65/69/07/656907c9-eb54-c59c-72b9-dad8489a0165/mzaf_3316991574698499044.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/weightless/571977211?i=571977598&uo=4"}}},{"id":"experience-einaudi","title":"Experience","artist":"Ludovico Einaudi","album":"In a Time Lapse","releaseYear":2013,"genre":"Neo-Classical","language":"English","moods":["focus-radio","sad-radio"],"categories":[],"sets":[],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/13/fd/7b/13fd7bfd-125a-4493-dc85-96aef9c25562/12UMGIM65023.rgb.jpg/600x600bb.jpg","durationSec":315,"hookStartSec":40,"sources":{"youtube":{"videoId":"1e9B31FLT-s","channelName":"LudovicoEinaudiVEVO","officialUrl":"https://www.youtube.com/watch?v=1e9B31FLT-s","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ab/9a/93/ab9a931d-93d3-71f8-8faf-73366409df82/mzaf_5843577385542178088.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/experience/1440772612?i=1440772740&uo=4"}}},{"id":"river-flows-in-you","title":"River Flows in You","artist":"Yiruma","album":"Yiruma 2nd Album 'First Love' (The Original & the Very First Recording)","releaseYear":2001,"genre":"Piano Instrumental","language":"English","moods":["focus-radio","chill-radio","romantic-radio"],"categories":[],"sets":[],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5f/f4/9b/5ff49b8c-d0bb-3748-14f4-131edfb332ce/first_love_3000.jpg/600x600bb.jpg","durationSec":189,"hookStartSec":18,"sources":{"youtube":{"videoId":"7maJOI3QMu0","channelName":"YirumaVEVO","officialUrl":"https://www.youtube.com/watch?v=7maJOI3QMu0","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/5d/e8/db/5de8db2a-16e9-9952-1e92-72c8bd66c466/mzaf_12453809584145821574.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/river-flows-in-you/1436677753?i=1436677761&uo=4"}}},{"id":"vaathi-coming","title":"Vaathi Coming","artist":"Anirudh Ravichander & Gana Balachandar","album":"Master (Original Motion Picture Soundtrack)","releaseYear":2020,"genre":"Tamil Kuthu","language":"Tamil","moods":["party-radio","workout-radio"],"categories":["tamil-kuthu"],"sets":["college-party","house-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a3/f2/dc/a3f2dc29-fc54-07bb-8f9c-2a3936d21a5d/886448363347.jpg/600x600bb.jpg","durationSec":228,"hookStartSec":28,"sources":{"youtube":{"videoId":"fRD_3vJagxk","channelName":"Sony Music South","officialUrl":"https://www.youtube.com/watch?v=fRD_3vJagxk","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d7/72/96/d77296ea-677d-45f9-4267-996bbc6801c8/mzaf_2392699048273414940.plus.aac.p.m4a","officialUrl":"https://music.apple.com/in/album/vaathi-coming/1502968254?i=1502968258&uo=4"}}},{"id":"arabic-kuthu","title":"Arabic Kuthu","artist":"Anirudh Ravichander & Jonita Gandhi","album":"Arabic Kuthu (From \"Beast\") - Single","releaseYear":2022,"genre":"Tamil Kuthu","language":"Tamil","moods":["party-radio","happy-radio"],"categories":["tamil-kuthu"],"sets":["college-party","wedding-dance"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e9/19/b9/e919b921-d5a8-9e9a-8508-3551da375aee/196626458629.jpg/600x600bb.jpg","durationSec":280,"hookStartSec":30,"sources":{"youtube":{"videoId":"KUN5Uf9mObQ","channelName":"Sun TV","officialUrl":"https://www.youtube.com/watch?v=KUN5Uf9mObQ","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/58/ac/9a/58ac9a48-9e3e-15c9-5085-3a13a6187992/mzaf_12322264242631159198.plus.aac.p.m4a","officialUrl":"https://music.apple.com/in/album/arabic-kuthu-from-beast/1609970851?i=1609971105&uo=4"}}},{"id":"rowdy-baby","title":"Rowdy Baby","artist":"Dhanush & Dhee","album":"Maari 2 (Original Motion Picture Soundtrack) - Single","releaseYear":2018,"genre":"Tamil Kuthu","language":"Tamil","moods":["happy-radio","party-radio"],"categories":["tamil-kuthu"],"sets":["birthday-party","college-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/09/0b/4f/090b4ffb-f4eb-f975-ae79-ce5446eeabc8/718598836276.jpg/600x600bb.jpg","durationSec":281,"hookStartSec":26,"sources":{"youtube":{"videoId":"x6Q7c9RyMzk","channelName":"Wunderbar Films","officialUrl":"https://www.youtube.com/watch?v=x6Q7c9RyMzk","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/91/17/90/911790e5-27e3-6021-da30-bddf59576e3d/mzaf_3831305118076812899.plus.aac.p.m4a","officialUrl":"https://music.apple.com/in/album/rowdy-baby/1702730225?i=1702730486&uo=4"}}},{"id":"kolaveri-di","title":"Why This Kolaveri Di","artist":"Dhanush & Anirudh Ravichander","album":"3 (Original Motion Picture Soundtrack) [Telugu]","releaseYear":2011,"genre":"Tamil Pop","language":"Tamil","moods":["happy-radio","chill-radio"],"categories":["tamil-kuthu"],"sets":["road-trip"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/07/86/83/07868369-2b62-343b-9993-4311f9d59dfa/886443435902.jpg/600x600bb.jpg","durationSec":260,"hookStartSec":24,"sources":{"youtube":{"videoId":"YR12Z8f1Dh8","channelName":"Sony Music South","officialUrl":"https://www.youtube.com/watch?v=YR12Z8f1Dh8","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/9c/b6/47/9cb647c8-7a88-e45a-3d96-26d60432fd9e/mzaf_18327520659217913330.plus.aac.p.m4a","officialUrl":"https://music.apple.com/in/album/why-this-kolaveri-di-the-soup-of-love/514729309?i=514729349&uo=4"}}},{"id":"naatu-naatu","title":"Naatu Naatu","artist":"Rahul Sipligunj & Kaala Bhairava","album":"RRR","releaseYear":2021,"genre":"Telugu Mass","language":"Telugu","moods":["party-radio","workout-radio"],"categories":["telugu-mass"],"sets":["college-party","wedding-dance","gym-session"],"artworkUrl":"https://i.ytimg.com/vi/79IEesucPo8/hqdefault.jpg","durationSec":220,"hookStartSec":32,"sources":{"youtube":{"videoId":"79IEesucPo8","channelName":"T-Series Telugu","officialUrl":"https://www.youtube.com/watch?v=79IEesucPo8","embeddable":true}}},{"id":"butta-bomma","title":"Butta Bomma","artist":"Armaan Malik","album":"Butta Bomma (Remix) [From \"Ala Vaikunthapurramuloo\"] - Single","releaseYear":2024,"genre":"Telugu Pop","language":"Telugu","moods":["happy-radio","romantic-radio"],"categories":["telugu-mass"],"sets":["wedding-dance","birthday-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/46/aa/48/46aa4863-c1ec-4574-e98e-80b8c1f3ef69/cover.jpg/600x600bb.jpg","durationSec":198,"hookStartSec":26,"sources":{"youtube":{"videoId":"2mDCVzruYzQ","channelName":"Aditya Music","officialUrl":"https://www.youtube.com/watch?v=2mDCVzruYzQ","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/28/e0/d3/28e0d30a-2afe-66e4-ac03-69b6d779fecd/mzaf_7857615290499608693.plus.aac.p.m4a","officialUrl":"https://music.apple.com/in/album/butta-bomma-remix-from-ala-vaikunthapurramuloo/1736706821?i=1736707044&uo=4"}}},{"id":"oo-antava","title":"Oo Antava Oo Oo Antava","artist":"Indravathi Chauhan","album":"Pushpa","releaseYear":2021,"genre":"Telugu Mass","language":"Telugu","moods":["party-radio"],"categories":["telugu-mass"],"sets":["house-party","college-party"],"artworkUrl":"https://i.ytimg.com/vi/u_wB6byrl5k/hqdefault.jpg","durationSec":220,"hookStartSec":28,"sources":{"youtube":{"videoId":"u_wB6byrl5k","channelName":"Aditya Music","officialUrl":"https://www.youtube.com/watch?v=u_wB6byrl5k","embeddable":true}}},{"id":"ramuloo-ramulaa","title":"Ramuloo Ramulaa","artist":"Anurag Kulkarni & Mangli","album":"Ramuloo Ramulaa (From \"Ala Vaikunthapurramuloo\") - Single","releaseYear":2019,"genre":"Telugu Mass","language":"Telugu","moods":["party-radio","happy-radio"],"categories":["telugu-mass"],"sets":["wedding-dance","college-party"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/4d/7c/4a/4d7c4a33-0c3b-b0e5-1e5a-8182d9a25811/cover.jpg/600x600bb.jpg","durationSec":246,"hookStartSec":26,"sources":{"youtube":{"videoId":"Bg8Yb9zGYyA","channelName":"Aditya Music PLAYBACK","officialUrl":"https://www.youtube.com/watch?v=Bg8Yb9zGYyA","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/21/7b/7d/217b7d89-df73-12db-ca5f-2fee71f47dce/mzaf_2385408187580859158.plus.aac.p.m4a","officialUrl":"https://music.apple.com/in/album/ramuloo-ramulaa-from-ala-vaikunthapurramuloo/1485104772?i=1485104774&uo=4"}}},{"id":"52-gaj-ka-daman","title":"52 Gaj Ka Daman","artist":"Renuka Panwar","album":"52 Gaj Ka Daman","releaseYear":2020,"genre":"Haryanvi DJ","language":"Haryanvi","moods":["party-radio","happy-radio"],"categories":["haryanvi-party"],"sets":["wedding-dance","birthday-party"],"artworkUrl":"https://i.ytimg.com/vi/CZt-rVn2BJs/hqdefault.jpg","durationSec":220,"hookStartSec":24,"sources":{"youtube":{"videoId":"CZt-rVn2BJs","channelName":"Mahra Tora","officialUrl":"https://www.youtube.com/watch?v=CZt-rVn2BJs","embeddable":true}}},{"id":"teri-aakhya-ka-yo-kajal","title":"Teri Aakhya Ka Yo Kajal","artist":"DC Madana","album":"Teri Aakhya Ka Yo Kajal","releaseYear":2018,"genre":"Haryanvi DJ","language":"Haryanvi","moods":["party-radio"],"categories":["haryanvi-party"],"sets":["wedding-dance","house-party"],"artworkUrl":"https://i.ytimg.com/vi/GftlBD-Apu8/hqdefault.jpg","durationSec":220,"hookStartSec":24,"sources":{"youtube":{"videoId":"GftlBD-Apu8","channelName":"Sonotek Punjabi","officialUrl":"https://www.youtube.com/watch?v=GftlBD-Apu8","embeddable":true}}},{"id":"chatak-matak","title":"Chatak Matak","artist":"Renuka Panwar","album":"Chatak Matak","releaseYear":2020,"genre":"Haryanvi DJ","language":"Haryanvi","moods":["party-radio","happy-radio"],"categories":["haryanvi-party"],"sets":["wedding-dance"],"artworkUrl":"https://i.ytimg.com/vi/s9AICwTKgOg/hqdefault.jpg","durationSec":220,"hookStartSec":22,"sources":{"youtube":{"videoId":"s9AICwTKgOg","channelName":"VATS RECORDS","officialUrl":"https://www.youtube.com/watch?v=s9AICwTKgOg","embeddable":true}}},{"id":"lollipop-lagelu","title":"Lollipop Lagelu","artist":"Pawan Singh","album":"Lollipop Lagelu","releaseYear":2015,"genre":"Bhojpuri Dance","language":"Bhojpuri","moods":["party-radio","happy-radio"],"categories":["bhojpuri-party"],"sets":["college-party","birthday-party"],"artworkUrl":"https://i.ytimg.com/vi/Gr8G_ldltDE/hqdefault.jpg","durationSec":220,"hookStartSec":20,"sources":{"youtube":{"videoId":"Gr8G_ldltDE","channelName":"Wave Music","officialUrl":"https://www.youtube.com/watch?v=Gr8G_ldltDE","embeddable":true}}},{"id":"rinkiya-ke-papa","title":"Rinkiya Ke Papa","artist":"Manoj Tiwari","album":"Rinkiya Ke Papa","releaseYear":2012,"genre":"Bhojpuri Dance","language":"Bhojpuri","moods":["happy-radio","party-radio"],"categories":["bhojpuri-party"],"sets":["birthday-party"],"artworkUrl":"https://i.ytimg.com/vi/2Mv8UOiyTq0/hqdefault.jpg","durationSec":220,"hookStartSec":22,"sources":{"youtube":{"videoId":"2Mv8UOiyTq0","channelName":"T-Series Hamaar Bhojpuri","officialUrl":"https://www.youtube.com/watch?v=2Mv8UOiyTq0","embeddable":true}}},{"id":"chhalakata-hamro","title":"Chhalakata Hamro Jawaniya","artist":"Pawan Singh & Priyanka Singh","album":"Bhojpuriya Raja","releaseYear":2016,"genre":"Bhojpuri Dance","language":"Bhojpuri","moods":["party-radio"],"categories":["bhojpuri-party"],"sets":["wedding-dance"],"artworkUrl":"https://i.ytimg.com/vi/c4JD7rEtIj8/hqdefault.jpg","durationSec":220,"hookStartSec":24,"sources":{"youtube":{"videoId":"c4JD7rEtIj8","channelName":"Worldwide Records Bhojpuri","officialUrl":"https://www.youtube.com/watch?v=c4JD7rEtIj8","embeddable":true}}},{"id":"chogada","title":"Chogada","artist":"Darshan Raval & Asees Kaur","album":"Loveyatri","releaseYear":2018,"genre":"Gujarati Garba","language":"Gujarati","moods":["happy-radio","party-radio"],"categories":["gujarati-garba","bollywood-party"],"sets":["wedding-dance","birthday-party"],"artworkUrl":"https://i.ytimg.com/vi/asYxxtiWUyw/hqdefault.jpg","durationSec":220,"hookStartSec":28,"sources":{"youtube":{"videoId":"asYxxtiWUyw","channelName":"T-Series","officialUrl":"https://www.youtube.com/watch?v=asYxxtiWUyw","embeddable":true}}},{"id":"dholida","title":"Dholida","artist":"Janhvi Shrimankar & Shail Hada","album":"Gangubai Kathiawadi","releaseYear":2022,"genre":"Gujarati Garba","language":"Gujarati","moods":["party-radio","workout-radio"],"categories":["gujarati-garba"],"sets":["wedding-dance"],"artworkUrl":"https://i.ytimg.com/vi/WGUsxa7l98M/hqdefault.jpg","durationSec":220,"hookStartSec":30,"sources":{"youtube":{"videoId":"WGUsxa7l98M","channelName":"Saregama Music","officialUrl":"https://www.youtube.com/watch?v=WGUsxa7l98M","embeddable":true}}},{"id":"nagada-sang-dhol","title":"Nagada Sang Dhol","artist":"Shreya Ghoshal & Osman Mir","album":"Goliyon Ki Raasleela Ram-Leela","releaseYear":2013,"genre":"Gujarati Garba","language":"Gujarati","moods":["party-radio","workout-radio"],"categories":["gujarati-garba","hindi-dance"],"sets":["wedding-dance","bollywood-night"],"artworkUrl":"https://i.ytimg.com/vi/3X7x4Ye-tqo/hqdefault.jpg","durationSec":220,"hookStartSec":32,"sources":{"youtube":{"videoId":"3X7x4Ye-tqo","channelName":"Sony Music India","officialUrl":"https://www.youtube.com/watch?v=3X7x4Ye-tqo","embeddable":true}}},{"id":"khalasi","title":"Khalasi","artist":"Aditya Gadhvi & Achint","album":"Coke Studio Bharat","releaseYear":2023,"genre":"Gujarati Folk Fusion","language":"Gujarati","moods":["happy-radio","chill-radio"],"categories":["gujarati-garba"],"sets":["road-trip"],"artworkUrl":"https://i.ytimg.com/vi/t7wSjy9Lv-o/hqdefault.jpg","durationSec":220,"hookStartSec":26,"sources":{"youtube":{"videoId":"t7wSjy9Lv-o","channelName":"Coke Studio India ","officialUrl":"https://www.youtube.com/watch?v=t7wSjy9Lv-o","embeddable":true}}},{"id":"zingaat","title":"Zingaat","artist":"Ajay-Atul","album":"Sairat","releaseYear":2016,"genre":"Marathi Dance","language":"Marathi","moods":["party-radio","happy-radio"],"categories":["marathi-party"],"sets":["wedding-dance","college-party","birthday-party"],"artworkUrl":"https://i.ytimg.com/vi/2gcsgfzqN8k/hqdefault.jpg","durationSec":220,"hookStartSec":34,"sources":{"youtube":{"videoId":"2gcsgfzqN8k","channelName":"Zee Music Marathi","officialUrl":"https://www.youtube.com/watch?v=2gcsgfzqN8k","embeddable":true}}},{"id":"apsara-aali","title":"Apsara Aali","artist":"Bela Shende & Ajay-Atul","album":"Natarang (Original Motion Picture Soundtrack)","releaseYear":2010,"genre":"Marathi Lavani","language":"Marathi","moods":["party-radio"],"categories":["marathi-party"],"sets":["wedding-dance"],"artworkUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c4/d3/61/c4d3615e-b652-e204-026c-827db678a280/8718857704249.png/600x600bb.jpg","durationSec":238,"hookStartSec":28,"sources":{"youtube":{"videoId":"a6iA2HgamOE","channelName":"Marathi Music Station","officialUrl":"https://www.youtube.com/watch?v=a6iA2HgamOE","embeddable":true},"itunesPreview":{"previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/46/45/8d/46458d12-536b-d6ea-ee12-06e0e7cf3ee5/mzaf_15583309538213083711.plus.aac.p.m4a","officialUrl":"https://music.apple.com/us/album/apsara-aali/1529534266?i=1529534275&uo=4"}}},{"id":"wajle-ki-bara","title":"Sairat Zaala Ji","artist":"Ajay Gogavale & Chinmayi","album":"Sairat","releaseYear":2016,"genre":"Marathi Romantic","language":"Marathi","moods":["romantic-radio","happy-radio"],"categories":["marathi-party"],"sets":["romantic-evening"],"artworkUrl":"https://i.ytimg.com/vi/ZL3MnrnLLpo/hqdefault.jpg","durationSec":220,"hookStartSec":30,"sources":{"youtube":{"videoId":"ZL3MnrnLLpo","channelName":"Marathi Love Vibes","officialUrl":"https://www.youtube.com/watch?v=ZL3MnrnLLpo","embeddable":true}}}];
+    var PREFS_KEY = "vibebox_blogger_prefs_v1";
+    var FAVS_KEY = "vibebox_blogger_favs_v1";
+    var PLAYLISTS_KEY = "vibebox_blogger_playlists_v1";
+
+    var DEFAULT_PREFS = {
+      playbackMode: "preview-crossfade",
+      volume: 0.85,
+      muted: false,
+      crossfadeSec: 4,
+      shuffle: false,
+      repeatMode: "all",
+      hookStartEnabled: false,
+      autoSkipUnavailable: true,
+      visStyle: "bars"
+    };
+
+    function loadJson(key, fallback) {
+      try {
+        var raw = window.localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+      } catch (e) {
+        return fallback;
+      }
+    }
+    function saveJson(key, val) {
+      try { window.localStorage.setItem(key, JSON.stringify(val)); } catch (e) {}
+    }
+
+    var stageEl = document.getElementById("vb-app-stage");
+    var isHomepage = stageEl ? stageEl.getAttribute("data-vb-ishome") === "1" : true;
+
+    var state = {
+      view: isHomepage ? "home" : "blog",
+      activeCollection: VB_COLLECTIONS.categories[0],
+      prefs: Object.assign({}, DEFAULT_PREFS, loadJson(PREFS_KEY, {})),
+      favorites: loadJson(FAVS_KEY, []),
+      customPlaylists: loadJson(PLAYLISTS_KEY, []),
+      queue: [],
+      currentIndex: 0,
+      activeCollectionTitle: "Bollywood Party",
+      activeSourceLabel: "Authorized 30s Audio · Web Audio Crossfade",
+      isPlaying: false,
+      isCrossfading: false,
+      currentTime: 0,
+      duration: 30,
+      drawerOpen: false,
+      searchQuery: "",
+      liveSearchResults: [],
+      searchLoading: false,
+      unavailable: null
+    };
+
+    function getSongsForCollection(kind, id) {
+      if (kind === "category") return VB_SONGS.filter(function(s) { return s.categories.indexOf(id) !== -1; });
+      if (kind === "mood") return VB_SONGS.filter(function(s) { return s.moods.indexOf(id) !== -1; });
+      if (kind === "set") return VB_SONGS.filter(function(s) { return s.sets.indexOf(id) !== -1; });
+      return VB_SONGS;
+    }
+
+    state.queue = getSongsForCollection("category", "bollywood-party");
+    if (state.queue.length === 0) state.queue = VB_SONGS.slice(0, 8);
+
+    // Web Audio Dual-Deck Crossfade Engine + YouTube IFrame Engine
+    var Engine = {
+      mode: "preview",
+      ctx: null,
+      audioA: null,
+      audioB: null,
+      gainA: null,
+      gainB: null,
+      master: null,
+      analyser: null,
+      activeDeck: "A",
+      fadeTimer: null,
+      ytPlayer: null,
+      ytReady: false,
+      ytLoading: false,
+      pendingYt: null,
+      pollId: null,
+
+      startPolling: function() {
+        if (Engine.pollId) return;
+        Engine.pollId = window.setInterval(function() { Engine.tick(); }, 250);
+      },
+
+      ensurePreviewGraph: function() {
+        Engine.startPolling();
+        if (Engine.ctx && Engine.audioA && Engine.audioB) {
+          if (Engine.ctx.state === "suspended") Engine.ctx.resume();
+          return;
+        }
+        var AC = window.AudioContext || window.webkitAudioContext;
+        var ctx = new AC();
+        var master = ctx.createGain();
+        master.gain.value = state.prefs.muted ? 0 : state.prefs.volume;
+        var analyser = ctx.createAnalyser();
+        analyser.fftSize = 256;
+        analyser.smoothingTimeConstant = 0.8;
+        master.connect(analyser);
+        analyser.connect(ctx.destination);
+
+        function makeDeck(initGain) {
+          var el = new Audio();
+          el.crossOrigin = "anonymous";
+          el.preload = "auto";
+          var src = ctx.createMediaElementSource(el);
+          var g = ctx.createGain();
+          g.gain.value = initGain;
+          src.connect(g);
+          g.connect(master);
+          return { el: el, gain: g };
+        }
+        var dA = makeDeck(1);
+        var dB = makeDeck(0);
+        dA.el.addEventListener("ended", function() { Engine.onPreviewEnded("A"); });
+        dB.el.addEventListener("ended", function() { Engine.onPreviewEnded("B"); });
+        dA.el.addEventListener("error", function() { Engine.onPreviewError("A"); });
+        dB.el.addEventListener("error", function() { Engine.onPreviewError("B"); });
+
+        Engine.ctx = ctx;
+        Engine.master = master;
+        Engine.analyser = analyser;
+        Engine.audioA = dA.el;
+        Engine.gainA = dA.gain;
+        Engine.audioB = dB.el;
+        Engine.gainB = dB.gain;
+      },
+
+      fadeOutCurve: function() {
+        var arr = new Float32Array(32);
+        for (var i = 0; i < 32; i++) arr[i] = Math.cos((i / 31) * Math.PI * 0.5);
+        return arr;
+      },
+
+      fadeInCurve: function() {
+        var arr = new Float32Array(32);
+        for (var i = 0; i < 32; i++) arr[i] = Math.sin((i / 31) * Math.PI * 0.5);
+        return arr;
+      },
+
+      stopYoutube: function() {
+        if (Engine.ytPlayer && Engine.ytReady) {
+          try { Engine.ytPlayer.pauseVideo(); } catch (e) {}
+        }
+        var dock = document.getElementById("vb-yt-dock");
+        if (dock) dock.classList.add("is-hidden");
+      },
+
+      stopPreviews: function() {
+        if (Engine.fadeTimer) {
+          window.clearTimeout(Engine.fadeTimer);
+          Engine.fadeTimer = null;
+        }
+        state.isCrossfading = false;
+        if (Engine.audioA) Engine.audioA.pause();
+        if (Engine.audioB) Engine.audioB.pause();
+      },
+
+      playPreviewImmediate: function(url) {
+        Engine.stopYoutube();
+        Engine.mode = "preview";
+        Engine.ensurePreviewGraph();
+        if (Engine.fadeTimer) { window.clearTimeout(Engine.fadeTimer); Engine.fadeTimer = null; }
+        state.isCrossfading = false;
+
+        var act = Engine.activeDeck === "A" ? Engine.audioA : Engine.audioB;
+        var stb = Engine.activeDeck === "A" ? Engine.audioB : Engine.audioA;
+        var actG = Engine.activeDeck === "A" ? Engine.gainA : Engine.gainB;
+        var stbG = Engine.activeDeck === "A" ? Engine.gainB : Engine.gainA;
+        stb.pause();
+        stb.currentTime = 0;
+        stbG.gain.setValueAtTime(0, Engine.ctx.currentTime);
+        actG.gain.cancelScheduledValues(Engine.ctx.currentTime);
+        actG.gain.setValueAtTime(1, Engine.ctx.currentTime);
+
+        act.src = url;
+        act.load();
+        act.currentTime = 0;
+        act.play().then(function() {
+          state.isPlaying = true;
+          updatePlayerBarUI();
+        }).catch(function() {
+          state.isPlaying = false;
+          updatePlayerBarUI();
+        });
+      },
+
+      crossfadePreview: function(url) {
+        Engine.stopYoutube();
+        Engine.mode = "preview";
+        Engine.ensurePreviewGraph();
+        if (state.isCrossfading) {
+          Engine.playPreviewImmediate(url);
+          return;
+        }
+        var act = Engine.activeDeck === "A" ? Engine.audioA : Engine.audioB;
+        var stb = Engine.activeDeck === "A" ? Engine.audioB : Engine.audioA;
+        var actG = Engine.activeDeck === "A" ? Engine.gainA : Engine.gainB;
+        var stbG = Engine.activeDeck === "A" ? Engine.gainB : Engine.gainA;
+        var fadeDur = Math.max(0.5, state.prefs.crossfadeSec || 4);
+
+        if (stb.src !== url) { stb.src = url; stb.load(); }
+        stb.currentTime = 0;
+        state.isCrossfading = true;
+        var now = Engine.ctx.currentTime;
+        stbG.gain.cancelScheduledValues(now);
+        stbG.gain.setValueAtTime(0.0001, now);
+        actG.gain.cancelScheduledValues(now);
+        actG.gain.setValueAtTime(1, now);
+
+        stb.play().then(function() {
+          actG.gain.setValueCurveAtTime(Engine.fadeOutCurve(), now, fadeDur);
+          stbG.gain.setValueCurveAtTime(Engine.fadeInCurve(), now, fadeDur);
+          state.isPlaying = true;
+          updatePlayerBarUI();
+          var outDeck = Engine.activeDeck;
+          var inDeck = outDeck === "A" ? "B" : "A";
+          Engine.fadeTimer = window.setTimeout(function() {
+            var oldA = outDeck === "A" ? Engine.audioA : Engine.audioB;
+            var oldG = outDeck === "A" ? Engine.gainA : Engine.gainB;
+            if (oldA) { oldA.pause(); oldA.currentTime = 0; }
+            if (oldG && Engine.ctx) {
+              oldG.gain.cancelScheduledValues(Engine.ctx.currentTime);
+              oldG.gain.setValueAtTime(0, Engine.ctx.currentTime);
+            }
+            Engine.activeDeck = inDeck;
+            state.isCrossfading = false;
+            Engine.fadeTimer = null;
+            updatePlayerBarUI();
+          }, fadeDur * 1000 + 60);
+        }).catch(function() {
+          state.isCrossfading = false;
+          handleUnavailable("Authorized audio stream could not be started.");
+        });
+      },
+
+      ensureYoutube: function(cb) {
+        Engine.startPolling();
+        if (Engine.ytPlayer && Engine.ytReady) { cb(); return; }
+        if (window.YT && window.YT.Player && !Engine.ytPlayer) {
+          Engine.ytPlayer = new window.YT.Player("vb-yt-player", {
+            width: "100%",
+            height: "100%",
+            playerVars: { autoplay: 0, controls: 1, modestbranding: 1, rel: 0, playsinline: 1, enablejsapi: 1, origin: window.location.origin },
+            events: {
+              onReady: function() {
+                Engine.ytReady = true;
+                Engine.applyVol();
+                if (Engine.pendingYt) {
+                  var p = Engine.pendingYt;
+                  Engine.pendingYt = null;
+                  Engine.ytPlayer.loadVideoById(p);
+                }
+                cb();
+              },
+              onStateChange: function(e) {
+                if (Engine.mode !== "youtube") return;
+                if (e.data === 1) { state.isPlaying = true; updatePlayerBarUI(); }
+                else if (e.data === 2) { state.isPlaying = false; updatePlayerBarUI(); }
+                else if (e.data === 0) {
+                  if (state.prefs.repeatMode === "one") {
+                    Engine.ytPlayer.seekTo(0, true);
+                    Engine.ytPlayer.playVideo();
+                  } else {
+                    window.VB.nextSong(true);
+                  }
+                }
+              },
+              onError: function() {
+                if (Engine.mode !== "youtube") return;
+                handleUnavailable("Official YouTube embed restricted playback on external sites.");
+              }
+            }
+          });
+          return;
+        }
+        if (!Engine.ytLoading) {
+          Engine.ytLoading = true;
+          var prev = window.onYouTubeIframeAPIReady;
+          window.onYouTubeIframeAPIReady = function() {
+            if (prev) prev();
+            Engine.ensureYoutube(cb);
+          };
+          var s = document.createElement("script");
+          s.src = "https://www.youtube.com/iframe_api";
+          s.async = true;
+          document.head.appendChild(s);
+        }
+      },
+
+      playYoutube: function(videoId, startSeconds) {
+        Engine.stopPreviews();
+        Engine.mode = "youtube";
+        var dock = document.getElementById("vb-yt-dock");
+        if (dock) dock.classList.remove("is-hidden");
+        Engine.ensureYoutube(function() {
+          if (Engine.ytPlayer && Engine.ytReady) {
+            Engine.ytPlayer.loadVideoById({ videoId: videoId, startSeconds: startSeconds || 0 });
+            Engine.applyVol();
+            state.isPlaying = true;
+            updatePlayerBarUI();
+          } else {
+            Engine.pendingYt = { videoId: videoId, startSeconds: startSeconds || 0 };
+          }
+        });
+      },
+
+      onPreviewEnded: function(deck) {
+        if (Engine.mode !== "preview" || deck !== Engine.activeDeck || state.isCrossfading) return;
+        if (state.prefs.repeatMode === "one") {
+          var a = deck === "A" ? Engine.audioA : Engine.audioB;
+          if (a) { a.currentTime = 0; a.play(); }
+          return;
+        }
+        window.VB.nextSong(true);
+      },
+
+      onPreviewError: function(deck) {
+        if (Engine.mode !== "preview" || deck !== Engine.activeDeck) return;
+        handleUnavailable("Authorized audio stream failed to load.");
+      },
+
+      tick: function() {
+        if (Engine.mode === "youtube") {
+          if (Engine.ytPlayer && Engine.ytReady) {
+            try {
+              if (Engine.ytPlayer.getPlayerState() === 1) {
+                state.currentTime = Engine.ytPlayer.getCurrentTime() || 0;
+                state.duration = Engine.ytPlayer.getDuration() || state.duration;
+                updateTimelineOnly();
+              }
+            } catch (e) {}
+          }
+          return;
+        }
+        var audio = Engine.activeDeck === "A" ? Engine.audioA : Engine.audioB;
+        if (!audio) return;
+        var ct = audio.currentTime || 0;
+        var dur = (isFinite(audio.duration) && audio.duration > 0) ? audio.duration : 30;
+        if (!audio.paused || ct > 0) {
+          state.currentTime = ct;
+          state.duration = dur;
+          updateTimelineOnly();
+        }
+        if (!audio.paused && state.prefs.repeatMode !== "one" && !state.isCrossfading &&
+            state.prefs.crossfadeSec > 0 && dur > state.prefs.crossfadeSec + 2 &&
+            ct >= dur - state.prefs.crossfadeSec) {
+          var nxtIdx = computeNextIndex(state.currentIndex, state.queue, state.prefs.shuffle, state.prefs.repeatMode);
+          if (nxtIdx !== null && state.queue[nxtIdx] && state.queue[nxtIdx].sources && state.queue[nxtIdx].sources.itunesPreview && state.queue[nxtIdx].sources.itunesPreview.previewUrl) {
+            state.currentIndex = nxtIdx;
+            startSongInternal(state.queue[nxtIdx], "preview-crossfade", true);
+          }
+        }
+      },
+
+      applyVol: function() {
+        if (Engine.master && Engine.ctx) {
+          Engine.master.gain.setTargetAtTime(state.prefs.muted ? 0 : state.prefs.volume, Engine.ctx.currentTime, 0.04);
+        }
+        if (Engine.ytPlayer && Engine.ytReady) {
+          try {
+            if (state.prefs.muted) Engine.ytPlayer.mute();
+            else { Engine.ytPlayer.unMute(); Engine.ytPlayer.setVolume(Math.round(state.prefs.volume * 100)); }
+          } catch (e) {}
+        }
+      },
+
+      pause: function() {
+        if (Engine.mode === "youtube") Engine.stopYoutube();
+        else Engine.stopPreviews();
+        state.isPlaying = false;
+        updatePlayerBarUI();
+      },
+
+      resume: function() {
+        if (Engine.mode === "youtube") {
+          var dock = document.getElementById("vb-yt-dock");
+          if (dock) dock.classList.remove("is-hidden");
+          if (Engine.ytPlayer && Engine.ytReady) { Engine.ytPlayer.playVideo(); state.isPlaying = true; }
+        } else {
+          var act = Engine.activeDeck === "A" ? Engine.audioA : Engine.audioB;
+          if (act) { act.play(); state.isPlaying = true; }
+        }
+        updatePlayerBarUI();
+      },
+
+      seek: function(sec) {
+        if (Engine.mode === "youtube") {
+          if (Engine.ytPlayer && Engine.ytReady) Engine.ytPlayer.seekTo(sec, true);
+        } else {
+          var act = Engine.activeDeck === "A" ? Engine.audioA : Engine.audioB;
+          if (act && isFinite(act.duration)) act.currentTime = Math.max(0, Math.min(act.duration - 0.1, sec));
+        }
+        state.currentTime = sec;
+        updateTimelineOnly();
+      }
+    };
+
+    function computeNextIndex(fromIdx, list, shuffle, repeat) {
+      if (!list || list.length === 0) return null;
+      if (shuffle && list.length > 1) {
+        var c = Math.floor(Math.random() * list.length);
+        if (c === fromIdx) c = (fromIdx + 1) % list.length;
+        return c;
+      }
+      var n = fromIdx + 1;
+      if (n < list.length) return n;
+      return repeat === "all" ? 0 : null;
+    }
+
+    function handleUnavailable(reason) {
+      var song = state.queue[state.currentIndex];
+      state.isPlaying = false;
+      state.unavailable = song ? { song: song, reason: reason } : null;
+      renderNotice();
+      updatePlayerBarUI();
+      if (state.prefs.autoSkipUnavailable && state.queue.length > 1) {
+        window.setTimeout(function() {
+          window.VB.nextSong(true);
+        }, 1800);
+      }
+    }
+
+    function startSongInternal(song, modeOverride, useCrossfade) {
+      if (!song) return;
+      var desired = modeOverride || state.prefs.playbackMode;
+      state.unavailable = null;
+      state.currentTime = 0;
+      renderNotice();
+
+      var yt = song.sources && song.sources.youtube;
+      var pv = song.sources && song.sources.itunesPreview;
+
+      if (desired === "preview-crossfade") {
+        if (pv && pv.previewUrl) {
+          state.duration = 30;
+          state.activeSourceLabel = "Authorized Audio · Web Audio Crossfade";
+          if (useCrossfade && state.prefs.crossfadeSec > 0) Engine.crossfadePreview(pv.previewUrl);
+          else Engine.playPreviewImmediate(pv.previewUrl);
+          updatePlayerBarUI();
+          renderStage();
+          return;
+        }
+        if (yt && yt.embeddable) {
+          state.duration = song.durationSec || 210;
+          state.activeSourceLabel = "YouTube Official (" + yt.channelName + ") · No preview";
+          Engine.playYoutube(yt.videoId, state.prefs.hookStartEnabled ? (song.hookStartSec || 0) : 0);
+          updatePlayerBarUI();
+          renderStage();
+          return;
+        }
+      } else {
+        if (yt && yt.embeddable) {
+          state.duration = song.durationSec || 210;
+          state.activeSourceLabel = "YouTube Official · " + yt.channelName;
+          Engine.playYoutube(yt.videoId, state.prefs.hookStartEnabled ? (song.hookStartSec || 0) : 0);
+          updatePlayerBarUI();
+          renderStage();
+          return;
+        }
+        if (pv && pv.previewUrl) {
+          state.duration = 30;
+          state.activeSourceLabel = "Authorized 30s Audio · Full video unavailable";
+          Engine.playPreviewImmediate(pv.previewUrl);
+          updatePlayerBarUI();
+          renderStage();
+          return;
+        }
+      }
+      handleUnavailable("No authorized playback stream is available for this track.");
+    }
+
+    function esc(str) {
+      return String(str == null ? "" : str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function fmtTime(sec) {
+      if (!isFinite(sec) || sec < 0) return "0:00";
+      var m = Math.floor(sec / 60);
+      var s = Math.floor(sec % 60);
+      return m + ":" + (s < 10 ? "0" : "") + s;
+    }
+
+    function artworkInnerHtml(song) {
+      var title = song ? song.title : "VB";
+      var initials = title.split(/\s+/).filter(Boolean).slice(0, 2).map(function(w) { return w[0].toUpperCase(); }).join("") || "VB";
+      if (song && song.artworkUrl) {
+        return "<img alt='" + esc(title) + "' referrerpolicy='no-referrer' src='" + esc(song.artworkUrl) + "' onerror='this.style.display=&quot;none&quot;;this.nextSibling.style.display=&quot;flex&quot;;'/><span class='vb-art-fallback' style='display:none;'>" + esc(initials) + "</span>";
+      }
+      return "<span class='vb-art-fallback' style='display:flex;'>" + esc(initials) + "</span>";
+    }
+
+    function artworkHtml(song, sizeClass, isPlaying) {
+      var cls = "vb-art " + sizeClass + (isPlaying ? " is-playing" : "");
+      return "<div class='" + cls + "'>" + artworkInnerHtml(song) + "</div>";
+    }
+
+    function songRowHtml(song, idx, listType) {
+      var cur = state.queue[state.currentIndex];
+      var isCur = cur && cur.id === song.id;
+      var fav = state.favorites.some(function(f) { return f.id === song.id; });
+      var pv = song.sources && song.sources.itunesPreview && song.sources.itunesPreview.previewUrl;
+      var yt = song.sources && song.sources.youtube && song.sources.youtube.embeddable;
+      var playable = Boolean(pv || yt);
+      var extUrl = (yt && song.sources.youtube.officialUrl) || (song.sources && song.sources.itunesPreview && song.sources.itunesPreview.officialUrl);
+      var prov = pv ? "Authorized 30s Audio" : (yt ? ("YouTube Official · " + song.sources.youtube.channelName) : "Unavailable");
+      return "<div class='vb-track-row" + (isCur ? " is-current" : "") + "'>" +
+        "<div class='vb-track-left'>" +
+          "<span class='vb-mono vb-track-num'>" + (isCur && state.isPlaying ? "&#9654;" : (idx + 1 < 10 ? "0" + (idx + 1) : (idx + 1))) + "</span>" +
+          artworkHtml(song, "vb-art-sm", isCur && state.isPlaying) +
+          "<div class='vb-track-info'>" +
+            "<button class='vb-track-title' type='button' onclick='window.VB.playFromList(&quot;" + esc(listType) + "&quot;," + idx + ")'>" + esc(song.title) + "</button>" +
+            "<div class='vb-track-artist'>" + esc(song.artist) + (song.album ? " &#183; " + esc(song.album) : "") + (song.releaseYear ? " (" + song.releaseYear + ")" : "") + "</div>" +
+            "<div class='vb-track-meta'><span>" + esc(song.language || "Music") + "</span><span>&#183;</span><span>" + esc(song.genre || "Audio") + "</span><span>&#183;</span><span>" + esc(prov) + "</span></div>" +
+          "</div>" +
+        "</div>" +
+        "<div class='vb-track-right'>" +
+          (extUrl ? "<a class='vb-official-link' href='" + esc(extUrl) + "' target='_blank' rel='noopener noreferrer'>Official &#8599;</a>" : "") +
+          "<span class='vb-mono' style='font-size:0.75rem;color:#94A3B8;'>" + fmtTime(song.durationSec || 30) + "</span>" +
+          "<button type='button' aria-label='Favorite' onclick='window.VB.toggleFavoriteById(&quot;" + esc(song.id) + "&quot;,&quot;" + esc(listType) + "&quot;)' style='color:" + (fav ? "#EC4899" : "#94A3B8") + ";font-size:1rem;'>" + (fav ? "&#9829;" : "&#9825;") + "</button>" +
+          (playable ? "<button class='vb-track-play-btn' type='button' onclick='window.VB.playFromList(&quot;" + esc(listType) + "&quot;," + idx + ")'>" + (isCur && state.isPlaying ? "Playing" : "Play") + "</button>" : "<span style='font-size:0.75rem;color:#FBBF24;'>Unavailable</span>") +
+        "</div>" +
+      "</div>";
+    }
+
+    function collectionCardHtml(col, kind) {
+      var list = getSongsForCollection(kind, col.id);
+      var active = state.activeCollectionTitle === col.title && state.isPlaying;
+      return "<div class='vb-card vb-card-row" + (active ? " is-active" : "") + "'>" +
+        "<div style='display:flex;align-items:center;gap:0.875rem;min-width:0;flex:1;cursor:pointer;' onclick='window.VB.openCollection(&quot;" + esc(kind) + "&quot;,&quot;" + esc(col.id) + "&quot;)'>" +
+          artworkHtml(list[0] || { title: col.title }, "vb-art-md", active) +
+          "<div style='min-width:0;'>" +
+            "<div class='vb-card-title' style='white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>" + esc(col.title) + "</div>" +
+            "<div class='vb-card-sub'>" + esc(col.subtitle) + "</div>" +
+            "<div class='vb-mono vb-card-meta'>" + list.length + " real songs</div>" +
+          "</div>" +
+        "</div>" +
+        "<button class='vb-play-circle' type='button' aria-label='Play " + esc(col.title) + "' onclick='window.VB.playCollection(&quot;" + esc(kind) + "&quot;,&quot;" + esc(col.id) + "&quot;)'>&#9654;</button>" +
+      "</div>";
+    }
+
+    // Live HTML5 Canvas Visualizer
+    var visRaf = 0;
+    var visPhase = 0;
+    function startVisualizerLoop() {
+      if (visRaf) window.cancelAnimationFrame(visRaf);
+      var freqData = new Uint8Array(128);
+      var timeData = new Uint8Array(128);
+
+      function draw() {
+        var canvas = document.getElementById("vb-vis-canvas");
+        if (canvas) {
+          var ctx = canvas.getContext("2d");
+          var w = canvas.width;
+          var h = canvas.height;
+          visPhase += state.isPlaying ? 0.045 : 0.01;
+          ctx.clearRect(0, 0, w, h);
+
+          if (Engine.mode === "preview" && Engine.analyser && state.isPlaying) {
+            Engine.analyser.getByteFrequencyData(freqData);
+            Engine.analyser.getByteTimeDomainData(timeData);
+          } else {
+            var amp = state.isPlaying ? 58 : 16;
+            var base = state.isPlaying ? 72 : 22;
+            for (var i = 0; i < 128; i++) {
+              var wv = Math.sin(visPhase + i * 0.25) * 0.6 + Math.cos(visPhase * 1.3 - i * 0.17) * 0.4;
+              freqData[i] = Math.max(8, Math.min(255, Math.round(base + wv * amp)));
+              timeData[i] = Math.round(128 + Math.sin(visPhase * 1.6 + i * 0.21) * (state.isPlaying ? 32 : 10));
+            }
+          }
+
+          var style = state.prefs.visStyle || "bars";
+          var bass = 0;
+          for (var b = 0; b < 8; b++) bass += freqData[b];
+          var bassNorm = bass / (8 * 255);
+
+          if (style === "gradient") {
+            var g1 = ctx.createRadialGradient(w * (0.3 + Math.sin(visPhase * 0.7) * 0.14), h * 0.45, 10, w * 0.3, h * 0.45, Math.max(80, w * (0.32 + bassNorm * 0.22)));
+            g1.addColorStop(0, "rgba(168,85,247,0.5)");
+            g1.addColorStop(1, "rgba(168,85,247,0)");
+            ctx.fillStyle = g1;
+            ctx.fillRect(0, 0, w, h);
+            var g2 = ctx.createRadialGradient(w * (0.72 + Math.cos(visPhase * 0.5) * 0.12), h * 0.55, 10, w * 0.72, h * 0.55, Math.max(80, w * (0.3 + bassNorm * 0.2)));
+            g2.addColorStop(0, "rgba(56,189,248,0.45)");
+            g2.addColorStop(1, "rgba(37,99,235,0)");
+            ctx.fillStyle = g2;
+            ctx.fillRect(0, 0, w, h);
+            ctx.beginPath();
+            for (var t = 0; t < 128; t++) {
+              var tx = (t / 127) * w;
+              var ty = h * 0.5 + ((timeData[t] - 128) / 128) * (h * 0.34);
+              if (t === 0) ctx.moveTo(tx, ty); else ctx.lineTo(tx, ty);
+            }
+            ctx.strokeStyle = "rgba(248,250,252,0.85)";
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+          } else if (style === "circular") {
+            var cx = w / 2, cy = h / 2, r = Math.min(w, h) * (0.24 + bassNorm * 0.05);
+            for (var p = 0; p < 64; p++) {
+              var ang = (p / 64) * Math.PI * 2 + visPhase * 0.3;
+              var ampP = (freqData[p] / 255) * (Math.min(w, h) * 0.22);
+              ctx.beginPath();
+              ctx.moveTo(cx + Math.cos(ang) * r, cy + Math.sin(ang) * r);
+              ctx.lineTo(cx + Math.cos(ang) * (r + Math.max(4, ampP)), cy + Math.sin(ang) * (r + Math.max(4, ampP)));
+              ctx.strokeStyle = p % 2 === 0 ? "#A855F7" : "#38BDF8";
+              ctx.lineWidth = 3;
+              ctx.lineCap = "round";
+              ctx.stroke();
+            }
+          } else if (style === "spectrum") {
+            var sg = ctx.createLinearGradient(0, 0, w, 0);
+            sg.addColorStop(0, "#9333EA"); sg.addColorStop(0.5, "#6366F1"); sg.addColorStop(1, "#38BDF8");
+            var fg = ctx.createLinearGradient(0, 0, 0, h);
+            fg.addColorStop(0, "rgba(168,85,247,0.45)"); fg.addColorStop(1, "rgba(37,99,235,0.02)");
+            ctx.beginPath();
+            ctx.moveTo(0, h);
+            for (var k = 0; k < 48; k++) {
+              ctx.lineTo((k / 47) * w, h - Math.max(8, (freqData[k] / 255) * (h - 24)));
+            }
+            ctx.lineTo(w, h);
+            ctx.closePath();
+            ctx.fillStyle = fg;
+            ctx.fill();
+            ctx.beginPath();
+            for (var k2 = 0; k2 < 48; k2++) {
+              var sx = (k2 / 47) * w, sy = h - Math.max(8, (freqData[k2] / 255) * (h - 24));
+              if (k2 === 0) ctx.moveTo(sx, sy); else ctx.lineTo(sx, sy);
+            }
+            ctx.strokeStyle = sg;
+            ctx.lineWidth = 3;
+            ctx.stroke();
+          } else {
+            var bars = 42, gap = 5, bw = (w - gap * (bars - 1)) / bars;
+            var bg = ctx.createLinearGradient(0, h, 0, 0);
+            bg.addColorStop(0, "#2563EB"); bg.addColorStop(0.6, "#9333EA"); bg.addColorStop(1, "#38BDF8");
+            ctx.fillStyle = bg;
+            for (var j = 0; j < bars; j++) {
+              var bh = Math.max(6, (freqData[j] / 255) * (h - 18));
+              ctx.fillRect(j * (bw + gap), h - bh, bw, bh);
+            }
+          }
+        }
+        visRaf = window.requestAnimationFrame(draw);
+      }
+      visRaf = window.requestAnimationFrame(draw);
+    }
+
+    function renderStage() {
+      var mount = document.getElementById("vb-app-stage");
+      if (!mount) return;
+      var blogWrap = document.getElementById("vb-blog-wrap");
+      if (blogWrap) {
+        blogWrap.style.display = (state.view === "home" || state.view === "blog") ? "block" : "none";
+      }
+
+      var btns = document.querySelectorAll("[data-vb-nav]");
+      for (var i = 0; i < btns.length; i++) {
+        var b = btns[i];
+        b.classList.toggle("is-active", b.getAttribute("data-vb-nav") === state.view);
+      }
+
+      if (state.view === "blog") {
+        mount.innerHTML = "";
+        return;
+      }
+
+      var cur = state.queue[state.currentIndex] || VB_SONGS[0];
+
+      if (state.view === "discover") {
+        var groups = ["Hindi", "Punjabi", "English", "Regional"];
+        var gHtml = groups.map(function(g) {
+          var cats = VB_COLLECTIONS.categories.filter(function(c) { return c.group === g; });
+          return "<div class='vb-section'><h2 style='font-size:1.35rem;'>" + esc(g) + "</h2><div class='vb-grid-3'>" +
+            cats.map(function(c) { return collectionCardHtml(c, "category"); }).join("") +
+            "</div></div>";
+        }).join("");
+        mount.innerHTML = "<h1 class='vb-hero-title'>Discover 22 Real-Song Categories</h1><p class='vb-hero-sub'>Curated Hindi, Punjabi, English, and Regional stations ready for Auto-DJ playback.</p>" + gHtml;
+        return;
+      }
+
+      if (state.view === "party") {
+        var setsHtml = VB_COLLECTIONS.sets.map(function(s) {
+          return collectionCardHtml(s, "set");
+        }).join("");
+        mount.innerHTML = "<h1 class='vb-hero-title'>10 Ready-Made Party Sets</h1><p class='vb-hero-sub'>Launch House Party, Bollywood Night, Punjabi Night, Wedding Dance, and more in one click.</p><div class='vb-grid-3' style='margin-top:1.5rem;'>" + setsHtml + "</div>" +
+          "<div class='vb-section'><div class='vb-section-head'><h2>Active Queue &#183; " + esc(state.activeCollectionTitle) + "</h2></div><div class='vb-tracklist'>" +
+          state.queue.map(function(s, idx) { return songRowHtml(s, idx, "queue"); }).join("") + "</div></div>";
+        return;
+      }
+
+      if (state.view === "mood") {
+        mount.innerHTML = "<h1 class='vb-hero-title'>8 Mood Radio Stations</h1><p class='vb-hero-sub'>Select a mood to stream matching real songs continuously.</p><div class='vb-grid-3' style='margin-top:1.5rem;'>" +
+          VB_COLLECTIONS.moods.map(function(m) { return collectionCardHtml(m, "mood"); }).join("") + "</div>";
+        return;
+      }
+
+      if (state.view === "collection" && state.activeCollection) {
+        var col = state.activeCollection;
+        var list = getSongsForCollection(col.kind, col.id);
+        window._vbViewingList = list;
+        mount.innerHTML = "<div style='margin-bottom:1rem;font-size:0.8rem;color:#94A3B8;'><button type='button' onclick='window.VB.go(&quot;home&quot;)' style='color:#38BDF8;'>Home</button> &#47; <span>" + esc(col.title) + "</span></div>" +
+          "<section class='vb-hero'><div class='vb-hero-left'>" + artworkHtml(list[0] || { title: col.title }, "vb-art-xl", state.activeCollectionTitle === col.title && state.isPlaying) +
+          "<div><p class='vb-kicker'>" + esc(col.kind.toUpperCase()) + " &#183; " + list.length + " REAL SONGS</p><h1 class='vb-hero-title'>" + esc(col.title) + "</h1><p class='vb-hero-sub'>" + esc(col.subtitle) + "</p>" +
+          "<div class='vb-btn-row'><button class='vb-btn-primary' type='button' onclick='window.VB.playCollection(&quot;" + esc(col.kind) + "&quot;,&quot;" + esc(col.id) + "&quot;)'>&#9654; Play Mix</button>" +
+          "<button class='vb-btn-sec' type='button' onclick='window.VB.toggleShuffle();window.VB.playCollection(&quot;" + esc(col.kind) + "&quot;,&quot;" + esc(col.id) + "&quot;)'>&#8646; Shuffle</button></div></div></div></section>" +
+          "<div class='vb-tracklist'>" + list.map(function(s, idx) { return songRowHtml(s, idx, "viewing"); }).join("") + "</div>";
+        return;
+      }
+
+      if (state.view === "search") {
+        var q = state.searchQuery.trim().toLowerCase();
+        var curated = q ? VB_SONGS.filter(function(s) {
+          return s.title.toLowerCase().indexOf(q) !== -1 || s.artist.toLowerCase().indexOf(q) !== -1 || (s.album && s.album.toLowerCase().indexOf(q) !== -1) || s.genre.toLowerCase().indexOf(q) !== -1 || s.language.toLowerCase().indexOf(q) !== -1;
+        }) : VB_SONGS.slice(0, 10);
+        window._vbSearchCurated = curated;
+        window._vbSearchLive = state.liveSearchResults;
+        mount.innerHTML = "<h1 class='vb-hero-title'>Search Real Songs &amp; Artists</h1><p class='vb-hero-sub'>Search curated tracks plus live iTunes 30-second official audio streams directly inside Blogger.</p>" +
+          "<div class='vb-input-box' style='margin-top:1.25rem;'><input id='vb-search-inp' type='search' value='" + esc(state.searchQuery) + "' placeholder='Search Kesariya, Arijit, Diljit, Eminem, Garba, Tamil...' oninput='window.VB.onSearchInput(this.value)'/></div>" +
+          "<div class='vb-section'><div class='vb-section-head'><h2>Catalog Matches (" + curated.length + ")</h2></div><div class='vb-tracklist'>" +
+          (curated.length ? curated.map(function(s, idx) { return songRowHtml(s, idx, "searchCurated"); }).join("") : "<p style='padding:1rem;color:#94A3B8;'>No catalog matches.</p>") + "</div></div>" +
+          (q ? "<div class='vb-section'><div class='vb-section-head'><h2>Live Official iTunes Results (" + state.liveSearchResults.length + ")" + (state.searchLoading ? " &#183; Searching..." : "") + "</h2></div><div class='vb-tracklist'>" +
+          (state.liveSearchResults.length ? state.liveSearchResults.map(function(s, idx) { return songRowHtml(s, idx, "searchLive"); }).join("") : "<p style='padding:1rem;color:#94A3B8;'>" + (state.searchLoading ? "Loading live official audio previews..." : "No live results found.") + "</p>") + "</div></div>" : "");
+        var inp = document.getElementById("vb-search-inp");
+        if (inp) { inp.focus(); try { inp.setSelectionRange(inp.value.length, inp.value.length); } catch (e) {} }
+        return;
+      }
+
+      if (state.view === "saved") {
+        window._vbFavList = state.favorites;
+        var plsHtml = state.customPlaylists.length ? "<div class='vb-grid-3' style='margin-top:1rem;'>" + state.customPlaylists.map(function(pl) {
+          return "<div class='vb-card vb-card-row'><div><div class='vb-card-title'>" + esc(pl.name) + "</div><div class='vb-card-meta'>" + pl.songs.length + " songs</div></div>" +
+            "<div style='display:flex;gap:0.5rem;'><button class='vb-play-circle' type='button' onclick='window.VB.playSavedPlaylist(&quot;" + esc(pl.id) + "&quot;)'>&#9654;</button>" +
+            "<button class='vb-btn-sec' type='button' style='padding:0.4rem 0.65rem;font-size:0.75rem;' onclick='window.VB.deleteSavedPlaylist(&quot;" + esc(pl.id) + "&quot;)'>Delete</button></div></div>";
+        }).join("") + "</div>" : "<p style='margin-top:0.75rem;color:#94A3B8;'>No custom playlists saved yet. Save your active queue below or in the Queue drawer.</p>";
+
+        mount.innerHTML = "<h1 class='vb-hero-title'>Saved Playlists &amp; Favorites</h1><p class='vb-hero-sub'>Stored directly in your browser LocalStorage &#8212; zero login required.</p>" +
+          "<form style='margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:0.75rem;' onsubmit='window.VB.saveQueueFromInput(event)'>" +
+            "<input class='vb-text-input' id='vb-save-name' style='flex:1;min-width:220px;' placeholder='Save current queue (&quot;" + esc(state.activeCollectionTitle) + "&quot;) as playlist...'/>" +
+            "<button class='vb-btn-primary' type='submit'>Save Active Queue</button>" +
+          "</form>" +
+          "<div class='vb-section'><h2>Custom Playlists (" + state.customPlaylists.length + ")</h2>" + plsHtml + "</div>" +
+          "<div class='vb-section'><h2>Favorite Songs (" + state.favorites.length + ")</h2><div class='vb-tracklist'>" +
+          (state.favorites.length ? state.favorites.map(function(s, idx) { return songRowHtml(s, idx, "favorites"); }).join("") : "<p style='padding:1rem;color:#94A3B8;'>Tap the heart icon on any song to save it here.</p>") +
+          "</div></div>";
+        return;
+      }
+
+      // DEFAULT HOME VIEW
+      var extUrl = cur && ((cur.sources && cur.sources.youtube && cur.sources.youtube.officialUrl) || (cur.sources && cur.sources.itunesPreview && cur.sources.itunesPreview.officialUrl));
+      var visNote = Engine.mode === "preview" && state.isPlaying ? "Live Web Audio FFT Spectrum" : (state.prefs.playbackMode === "youtube" ? "Ambient Motion &#183; Official video plays in dock" : "Press Play for live Web Audio spectrum");
+
+      mount.innerHTML =
+        "<section class='vb-hero'>" +
+          "<div class='vb-glow-1'></div><div class='vb-glow-2'></div>" +
+          "<div class='vb-hero-grid'>" +
+            "<div class='vb-hero-left'>" +
+              artworkHtml(cur, "vb-art-xl", state.isPlaying) +
+              "<div style='min-width:0;flex:1;'>" +
+                "<p class='vb-kicker'>" + esc(state.activeCollectionTitle) + " &#183; " + esc(state.activeSourceLabel) + "</p>" +
+                "<h1 class='vb-hero-title'>Press Play. Let the Music Flow.</h1>" +
+                "<p class='vb-hero-sub'><strong style='color:#FFFFFF;'>" + esc(cur.title) + "</strong> by " + esc(cur.artist) + (cur.album ? " &#183; " + esc(cur.album) : "") + (cur.releaseYear ? " (" + cur.releaseYear + ")" : "") + (state.isCrossfading ? " &#183; Crossfading" : "") + "</p>" +
+                (extUrl ? "<a class='vb-official-link' href='" + esc(extUrl) + "' target='_blank' rel='noopener noreferrer'>Open Official Song Source &#8599;</a>" : "") +
+                "<div class='vb-btn-row'>" +
+                  "<button class='vb-btn-primary' type='button' onclick='window.VB.togglePlayPause()'>" + (state.isPlaying ? "&#10074;&#10074; Pause Flow" : "&#9654; Press Play") + "</button>" +
+                  "<button class='vb-btn-sec' type='button' onclick='window.VB.nextSong()'>&#9197; Next Song</button>" +
+                  "<button class='vb-btn-sec" + (state.prefs.shuffle ? " is-on" : "") + "' type='button' onclick='window.VB.toggleShuffle()'>&#8646; " + (state.prefs.shuffle ? "Shuffle On" : "Shuffle") + "</button>" +
+                  "<button class='vb-btn-sec' type='button' onclick='window.VB.go(&quot;party&quot;)'>10 Party Sets</button>" +
+                "</div>" +
+                "<div class='vb-engine-switch'><span>Playback Engine:</span>" +
+                  "<button class='" + (state.prefs.playbackMode === "preview-crossfade" ? "is-active" : "") + "' type='button' onclick='window.VB.setPlaybackMode(&quot;preview-crossfade&quot;)'>Web Audio Crossfade (30s Official)</button>" +
+                  "<span>&#183;</span>" +
+                  "<button class='" + (state.prefs.playbackMode === "youtube" ? "is-active" : "") + "' type='button' onclick='window.VB.setPlaybackMode(&quot;youtube&quot;)'>Full Song (YouTube Official)</button>" +
+                "</div>" +
+              "</div>" +
+            "</div>" +
+            "<div>" +
+              "<div class='vb-vis-box'><canvas class='vb-vis-canvas' height='240' id='vb-vis-canvas' width='860'></canvas><div class='vb-vis-caption'>" + visNote + "</div></div>" +
+              "<div class='vb-vis-modes'>" +
+                [["bars","Frequency Bars"],["circular","Circular Wave"],["spectrum","Neon Spectrum"],["gradient","Ambient Glow"]].map(function(m) {
+                  return "<button class='vb-vis-mode-btn" + (state.prefs.visStyle === m[0] ? " is-active" : "") + "' type='button' onclick='window.VB.setVisStyle(&quot;" + m[0] + "&quot;)'>" + m[1] + "</button>";
+                }).join("") +
+              "</div>" +
+            "</div>" +
+          "</div>" +
+        "</section>" +
+
+        "<section class='vb-section'><div class='vb-section-head'><div><h2>Ready-Made Party Sets</h2><p>One-click multi-genre party queues ready to flow.</p></div><button class='vb-link-more' type='button' onclick='window.VB.go(&quot;party&quot;)'>All 10 Sets &#8594;</button></div><div class='vb-grid-5'>" +
+          VB_COLLECTIONS.sets.slice(0, 5).map(function(s) {
+            var list = getSongsForCollection("set", s.id);
+            var active = state.activeCollectionTitle === s.title && state.isPlaying;
+            return "<div class='vb-card" + (active ? " is-active" : "") + "'><div style='display:flex;align-items:center;justify-content:space-between;gap:0.5rem;'>" + artworkHtml(list[0] || { title: s.title }, "vb-art-sm", active) +
+              "<button class='vb-play-circle' type='button' onclick='window.VB.playCollection(&quot;set&quot;,&quot;" + esc(s.id) + "&quot;)'>&#9654;</button></div>" +
+              "<div style='margin-top:0.75rem;cursor:pointer;' onclick='window.VB.openCollection(&quot;set&quot;,&quot;" + esc(s.id) + "&quot;)'><div class='vb-card-title'>" + esc(s.title) + "</div><div class='vb-card-sub'>" + esc(s.subtitle) + "</div></div>" +
+              "<div class='vb-mono vb-card-meta'>" + list.length + " real songs</div></div>";
+          }).join("") +
+        "</div></section>" +
+
+        "<section class='vb-section'><div class='vb-section-head'><div><h2>Mood Radio</h2><p>8 continuous radio stations matched to your mood.</p></div><button class='vb-link-more' type='button' onclick='window.VB.go(&quot;mood&quot;)'>All 8 Radios &#8594;</button></div><div class='vb-grid-4'>" +
+          VB_COLLECTIONS.moods.map(function(m) {
+            var active = state.activeCollectionTitle === m.title && state.isPlaying;
+            return "<div class='vb-card" + (active ? " is-active" : "") + "' style='background:linear-gradient(135deg," + esc(m.accentFrom) + "24," + esc(m.accentTo) + "16);'>" +
+              "<div style='display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;'><div style='cursor:pointer;min-width:0;' onclick='window.VB.openCollection(&quot;mood&quot;,&quot;" + esc(m.id) + "&quot;)'><div class='vb-card-title'>" + esc(m.title) + "</div><div class='vb-card-sub'>" + esc(m.subtitle) + "</div></div>" +
+              "<button class='vb-play-circle' type='button' onclick='window.VB.playCollection(&quot;mood&quot;,&quot;" + esc(m.id) + "&quot;)'>&#9654;</button></div></div>";
+          }).join("") +
+        "</div></section>" +
+
+        "<section class='vb-section'><div class='vb-section-head'><div><h2>Discover Categories</h2><p>22 stations across Hindi, Punjabi, English &amp; Regional hits.</p></div><button class='vb-link-more' type='button' onclick='window.VB.go(&quot;discover&quot;)'>View All 22 &#8594;</button></div><div class='vb-grid-3'>" +
+          VB_COLLECTIONS.categories.slice(0, 6).map(function(c) { return collectionCardHtml(c, "category"); }).join("") +
+        "</div></section>";
+    }
+
+    function updateTimelineOnly() {
+      var ct = document.getElementById("vb-bar-ct");
+      var dur = document.getElementById("vb-bar-dur");
+      var seek = document.getElementById("vb-bar-seek");
+      var safeDur = state.duration > 0 ? state.duration : 30;
+      if (ct) ct.textContent = fmtTime(state.currentTime);
+      if (dur) dur.textContent = fmtTime(safeDur);
+      if (seek) { seek.max = safeDur; seek.value = Math.min(state.currentTime, safeDur); }
+    }
+
+    function updatePlayerBarUI() {
+      var cur = state.queue[state.currentIndex];
+      if (!cur) return;
+      var art = document.getElementById("vb-bar-art");
+      if (art) {
+        art.className = "vb-art vb-art-sm" + (state.isPlaying ? " is-playing" : "");
+        art.innerHTML = artworkInnerHtml(cur);
+      }
+      var titleEl = document.getElementById("vb-bar-title");
+      var metaEl = document.getElementById("vb-bar-meta");
+      var srcEl = document.getElementById("vb-bar-source");
+      var playEl = document.getElementById("vb-bar-play");
+      var favEl = document.getElementById("vb-bar-fav");
+      var shufEl = document.getElementById("vb-bar-shuffle");
+      var repEl = document.getElementById("vb-bar-repeat");
+      var modeEl = document.getElementById("vb-bar-mode");
+      var ytCh = document.getElementById("vb-yt-channel");
+      var ytExt = document.getElementById("vb-yt-ext");
+
+      if (titleEl) titleEl.textContent = cur.title + (state.isCrossfading ? " · Crossfading" : "");
+      if (metaEl) metaEl.textContent = cur.artist + (cur.album ? " · " + cur.album : "");
+      if (srcEl) {
+        var ext = (cur.sources && cur.sources.itunesPreview && cur.sources.itunesPreview.officialUrl) || (cur.sources && cur.sources.youtube && cur.sources.youtube.officialUrl);
+        srcEl.innerHTML = "<span>" + esc(state.activeSourceLabel) + "</span>" + (ext ? "<a href='" + esc(ext) + "' target='_blank' rel='noopener noreferrer' style='color:#38BDF8;'>Official &#8599;</a>" : "");
+      }
+      if (playEl) playEl.innerHTML = state.isPlaying ? "&#10074;&#10074;" : "&#9654;";
+      if (favEl) {
+        var isFav = state.favorites.some(function(f) { return f.id === cur.id; });
+        favEl.innerHTML = isFav ? "&#9829;" : "&#9825;";
+        favEl.style.color = isFav ? "#EC4899" : "#94A3B8";
+      }
+      if (shufEl) shufEl.style.color = state.prefs.shuffle ? "#38BDF8" : "#94A3B8";
+      if (repEl) {
+        repEl.style.color = state.prefs.repeatMode !== "off" ? "#C084FC" : "#94A3B8";
+        repEl.innerHTML = state.prefs.repeatMode === "one" ? "&#8635;1" : "&#8635;";
+      }
+      if (modeEl) {
+        modeEl.textContent = state.prefs.playbackMode === "preview-crossfade" ? ("Fade " + state.prefs.crossfadeSec + "s") : "Full Song";
+      }
+      if (ytCh && cur.sources && cur.sources.youtube) ytCh.textContent = cur.sources.youtube.channelName || "YouTube Official";
+      if (ytExt && cur.sources && cur.sources.youtube) ytExt.href = cur.sources.youtube.officialUrl || "#";
+
+      updateTimelineOnly();
+      if (state.drawerOpen) renderDrawer();
+    }
+
+    function renderNotice() {
+      var el = document.getElementById("vb-notice");
+      if (!el) return;
+      if (!state.unavailable) { el.classList.remove("is-open"); el.innerHTML = ""; return; }
+      var s = state.unavailable.song;
+      var ext = (s.sources && s.sources.youtube && s.sources.youtube.officialUrl) || (s.sources && s.sources.itunesPreview && s.sources.itunesPreview.officialUrl);
+      el.classList.add("is-open");
+      el.innerHTML = "<div style='display:flex;justify-content:space-between;gap:0.75rem;'><div><strong>" + esc(s.title) + " &#8212; Unavailable</strong><p style='margin:0.3rem 0 0;color:#CBD5E1;'>" + esc(state.unavailable.reason) + "</p>" +
+        "<div style='margin-top:0.6rem;display:flex;gap:0.75rem;'>" + (ext ? "<a href='" + esc(ext) + "' target='_blank' rel='noopener noreferrer' style='color:#38BDF8;font-weight:600;'>Official Link &#8599;</a>" : "") +
+        "<button type='button' onclick='window.VB.nextSong()' style='color:#E2E8F0;font-weight:600;'>Skip Track &#8594;</button></div></div>" +
+        "<button type='button' onclick='window.VB.dismissNotice()' style='color:#94A3B8;'>&#10005;</button></div>";
+    }
+
+    function renderDrawer() {
+      var el = document.getElementById("vb-drawer");
+      if (!el) return;
+      if (!state.drawerOpen) { el.classList.remove("is-open"); return; }
+      el.classList.add("is-open");
+      var upNext = state.queue.slice(state.currentIndex + 1).concat(state.prefs.repeatMode === "all" ? state.queue.slice(0, state.currentIndex) : []);
+      var isPv = state.prefs.playbackMode === "preview-crossfade";
+      el.innerHTML =
+        "<div style='display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:0.75rem;'>" +
+          "<div><div style='font-size:0.75rem;color:#C084FC;'>" + esc(state.activeCollectionTitle) + " &#183; Track " + (state.currentIndex + 1) + " of " + state.queue.length + "</div>" +
+          "<h2 class='vb-display' style='font-size:1.15rem;'>Auto-DJ Queue &amp; Crossfade Controls</h2></div>" +
+          "<button type='button' onclick='window.VB.toggleDrawer()' style='padding:0.35rem 0.55rem;border:1px solid rgba(255,255,255,0.15);border-radius:0.5rem;'>&#10005;</button>" +
+        "</div>" +
+        "<div style='margin-top:1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;padding:0.9rem;border-radius:0.75rem;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);'>" +
+          "<div><div style='font-size:0.75rem;font-weight:600;'>Playback Source</div>" +
+          "<div style='margin-top:0.5rem;display:flex;gap:0.5rem;'>" +
+            "<button type='button' class='vb-btn-sec" + (isPv ? " is-on" : "") + "' style='flex:1;padding:0.45rem;font-size:0.72rem;justify-content:center;' onclick='window.VB.setPlaybackMode(&quot;preview-crossfade&quot;)'>30s Web Audio Crossfade</button>" +
+            "<button type='button' class='vb-btn-sec" + (!isPv ? " is-on" : "") + "' style='flex:1;padding:0.45rem;font-size:0.72rem;justify-content:center;' onclick='window.VB.setPlaybackMode(&quot;youtube&quot;)'>Full Song (YouTube)</button>" +
+          "</div><p style='margin:0.45rem 0 0;font-size:0.7rem;color:#94A3B8;'>" + (isPv ? "Dual-deck Web Audio gain curves active on authorized CORS audio." : "YouTube IFrame plays full official songs; crossfade applies to Web Audio streams only.") + "</p></div>" +
+          "<div><div style='display:flex;justify-content:space-between;font-size:0.75rem;'><span>Crossfade Duration</span><span class='vb-mono' style='color:#38BDF8;'>" + (isPv ? state.prefs.crossfadeSec + "s" : "Web Audio Mode") + "</span></div>" +
+          "<input class='vb-slider' type='range' min='0' max='10' step='1' " + (!isPv ? "disabled='disabled'" : "") + " value='" + state.prefs.crossfadeSec + "' oninput='window.VB.setCrossfade(Number(this.value))' style='width:100%;margin-top:0.55rem;'/>" +
+          "<div style='margin-top:0.6rem;display:flex;gap:1rem;font-size:0.72rem;color:#CBD5E1;'>" +
+            "<label><input type='checkbox' " + (state.prefs.hookStartEnabled ? "checked='checked'" : "") + " onchange='window.VB.toggleHookStart()'/> Start from Hook</label>" +
+            "<label><input type='checkbox' " + (state.prefs.autoSkipUnavailable ? "checked='checked'" : "") + " onchange='window.VB.toggleAutoSkip()'/> Auto-skip unavailable</label>" +
+          "</div></div>" +
+        "</div>" +
+        "<form style='margin-top:0.9rem;display:flex;gap:0.5rem;' onsubmit='window.VB.addCustomAudioUrl(event)'>" +
+          "<input class='vb-text-input' id='vb-custom-title' style='width:9rem;' placeholder='Track title'/>" +
+          "<input class='vb-text-input' id='vb-custom-url' type='url' style='flex:1;' placeholder='https://... authorized CORS MP3/M4A/WAV URL'/>" +
+          "<button class='vb-btn-sec' type='submit' style='padding:0.45rem 0.85rem;font-size:0.75rem;background:#2563EB;border-color:#2563EB;'>+ Add Audio</button>" +
+        "</form>" +
+        "<div style='margin-top:1rem;font-size:0.75rem;font-weight:600;color:#94A3B8;'>Up Next (" + upNext.length + ")</div>" +
+        "<div class='vb-tracklist' style='margin-top:0.5rem;'>" + upNext.slice(0, 15).map(function(s, i) {
+          return "<div class='vb-track-row' style='padding:0.55rem 0.75rem;cursor:pointer;' onclick='window.VB.playFromQueueId(&quot;" + esc(s.id) + "&quot;)'>" +
+            "<div class='vb-track-left'><span class='vb-mono vb-track-num'>" + (i + 1) + "</span>" + artworkHtml(s, "vb-art-sm", false) +
+            "<div class='vb-track-info'><div class='vb-track-title'>" + esc(s.title) + "</div><div class='vb-track-artist'>" + esc(s.artist) + "</div></div></div>" +
+            "<span class='vb-mono' style='font-size:0.7rem;color:#94A3B8;'>" + fmtTime(s.durationSec || 30) + "</span></div>";
+        }).join("") + "</div>";
+    }
+
+    var searchTimer = null;
+    window._vbJsonpSearch = function(data) {
+      state.searchLoading = false;
+      var results = (data && data.results) || [];
+      state.liveSearchResults = results.filter(function(r) { return r.previewUrl && r.trackName; }).map(function(r) {
+        return {
+          id: "itunes-" + r.trackId,
+          title: r.trackName,
+          artist: r.artistName || "Artist",
+          album: r.collectionName || "Single",
+          releaseYear: r.releaseDate ? Number(r.releaseDate.slice(0, 4)) : null,
+          genre: r.primaryGenreName || "Music",
+          language: "Global",
+          moods: [], categories: [], sets: [],
+          artworkUrl: (r.artworkUrl100 || "").replace("100x100bb", "600x600bb"),
+          durationSec: Math.round((r.trackTimeMillis || 30000) / 1000),
+          sources: { itunesPreview: { previewUrl: r.previewUrl, officialUrl: r.trackViewUrl || "#" } }
+        };
+      });
+      if (state.view === "search") renderStage();
+    };
+
+    function enhanceBlogPostAudio() {
+      var audios = document.querySelectorAll(".vb-post-body audio, .vb-post-body [data-vibebox-url]");
+      for (var i = 0; i < audios.length; i++) {
+        (function(node) {
+          var src = node.getAttribute("data-vibebox-url") || node.getAttribute("src") || (node.querySelector("source") && node.querySelector("source").getAttribute("src"));
+          if (!src || node.getAttribute("data-vb-enhanced")) return;
+          node.setAttribute("data-vb-enhanced", "1");
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "vb-btn-primary";
+          btn.style.marginTop = "0.5rem";
+          btn.textContent = "Play in VIBEBOX Auto-DJ";
+          btn.onclick = function() {
+            var track = {
+              id: "post-" + Date.now(),
+              title: node.getAttribute("data-vibebox-title") || document.title || "Blog Audio Track",
+              artist: node.getAttribute("data-vibebox-artist") || "Featured Blog Mix",
+              album: "Blog Feature",
+              releaseYear: new Date().getFullYear(),
+              genre: "Blog Audio",
+              language: "Global",
+              moods: [], categories: [], sets: [],
+              artworkUrl: node.getAttribute("data-vibebox-artwork") || "",
+              durationSec: 180,
+              sources: { itunesPreview: { previewUrl: src, officialUrl: window.location.href } }
+            };
+            state.queue = [track].concat(state.queue);
+            state.currentIndex = 0;
+            state.activeCollectionTitle = "Blog Post Mix";
+            startSongInternal(track, "preview-crossfade", false);
+          };
+          node.parentNode.insertBefore(btn, node.nextSibling);
+        })(audios[i]);
+      }
+    }
+
+    window.VB = {
+      go: function(view) {
+        state.view = view;
+        renderStage();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      },
+      toggleMobileMenu: function(force) {
+        var el = document.getElementById("vb-mobile-drawer");
+        if (!el) return;
+        if (typeof force === "boolean") el.classList.toggle("is-open", force);
+        else el.classList.toggle("is-open");
+      },
+      openCollection: function(kind, id) {
+        var pool = kind === "mood" ? VB_COLLECTIONS.moods : (kind === "set" ? VB_COLLECTIONS.sets : VB_COLLECTIONS.categories);
+        var found = pool.filter(function(c) { return c.id === id; })[0];
+        if (!found) return;
+        state.activeCollection = found;
+        state.view = "collection";
+        renderStage();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      },
+      playCollection: function(kind, id) {
+        var pool = kind === "mood" ? VB_COLLECTIONS.moods : (kind === "set" ? VB_COLLECTIONS.sets : VB_COLLECTIONS.categories);
+        var found = pool.filter(function(c) { return c.id === id; })[0];
+        var list = getSongsForCollection(kind, id);
+        if (!found || list.length === 0) return;
+        state.queue = list.slice();
+        state.currentIndex = 0;
+        state.activeCollectionTitle = found.title;
+        startSongInternal(list[0]);
+      },
+      playFromList: function(listType, idx) {
+        var list = listType === "viewing" ? (window._vbViewingList || state.queue) :
+                   listType === "searchCurated" ? (window._vbSearchCurated || state.queue) :
+                   listType === "searchLive" ? (window._vbSearchLive || state.queue) :
+                   listType === "favorites" ? (window._vbFavList || state.favorites) : state.queue;
+        if (!list || !list[idx]) return;
+        state.queue = list.slice();
+        state.currentIndex = idx;
+        startSongInternal(list[idx]);
+      },
+      playFromQueueId: function(id) {
+        for (var i = 0; i < state.queue.length; i++) {
+          if (state.queue[i].id === id) {
+            state.currentIndex = i;
+            startSongInternal(state.queue[i]);
+            return;
+          }
+        }
+      },
+      togglePlayPause: function() {
+        var cur = state.queue[state.currentIndex];
+        if (!cur) return;
+        if (state.isPlaying) Engine.pause();
+        else if (state.currentTime === 0) startSongInternal(cur);
+        else Engine.resume();
+      },
+      nextSong: function(auto) {
+        var idx = computeNextIndex(state.currentIndex, state.queue, state.prefs.shuffle, auto ? state.prefs.repeatMode : "all");
+        if (idx === null) { Engine.pause(); return; }
+        state.currentIndex = idx;
+        startSongInternal(state.queue[idx], null, state.isPlaying && state.prefs.playbackMode === "preview-crossfade");
+      },
+      prevSong: function() {
+        if (state.currentTime > 3) { Engine.seek(0); return; }
+        state.currentIndex = (state.currentIndex - 1 + state.queue.length) % state.queue.length;
+        startSongInternal(state.queue[state.currentIndex]);
+      },
+      seek: function(s) { Engine.seek(s); },
+      setVolume: function(v) { state.prefs.volume = v; state.prefs.muted = false; saveJson(PREFS_KEY, state.prefs); Engine.applyVol(); },
+      toggleMute: function() { state.prefs.muted = !state.prefs.muted; saveJson(PREFS_KEY, state.prefs); Engine.applyVol(); updatePlayerBarUI(); },
+      toggleShuffle: function() { state.prefs.shuffle = !state.prefs.shuffle; saveJson(PREFS_KEY, state.prefs); updatePlayerBarUI(); renderStage(); },
+      cycleRepeat: function() {
+        state.prefs.repeatMode = state.prefs.repeatMode === "all" ? "one" : (state.prefs.repeatMode === "one" ? "off" : "all");
+        saveJson(PREFS_KEY, state.prefs); updatePlayerBarUI();
+      },
+      setPlaybackMode: function(m) {
+        state.prefs.playbackMode = m;
+        saveJson(PREFS_KEY, state.prefs);
+        if (state.isPlaying && state.queue[state.currentIndex]) startSongInternal(state.queue[state.currentIndex], m, false);
+        else { updatePlayerBarUI(); renderStage(); }
+      },
+      togglePlaybackMode: function() {
+        window.VB.setPlaybackMode(state.prefs.playbackMode === "preview-crossfade" ? "youtube" : "preview-crossfade");
+      },
+      setCrossfade: function(sec) { state.prefs.crossfadeSec = sec; saveJson(PREFS_KEY, state.prefs); updatePlayerBarUI(); },
+      toggleHookStart: function() { state.prefs.hookStartEnabled = !state.prefs.hookStartEnabled; saveJson(PREFS_KEY, state.prefs); },
+      toggleAutoSkip: function() { state.prefs.autoSkipUnavailable = !state.prefs.autoSkipUnavailable; saveJson(PREFS_KEY, state.prefs); },
+      setVisStyle: function(st) { state.prefs.visStyle = st; saveJson(PREFS_KEY, state.prefs); renderStage(); },
+      toggleDrawer: function() { state.drawerOpen = !state.drawerOpen; renderDrawer(); },
+      dismissNotice: function() { state.unavailable = null; renderNotice(); },
+      toggleFavoriteCurrent: function() {
+        var cur = state.queue[state.currentIndex];
+        if (!cur) return;
+        var exists = state.favorites.some(function(f) { return f.id === cur.id; });
+        state.favorites = exists ? state.favorites.filter(function(f) { return f.id !== cur.id; }) : [cur].concat(state.favorites);
+        saveJson(FAVS_KEY, state.favorites);
+        updatePlayerBarUI();
+        if (state.view === "saved") renderStage();
+      },
+      toggleFavoriteById: function(id, listType) {
+        var list = listType === "viewing" ? (window._vbViewingList || state.queue) :
+                   listType === "searchCurated" ? (window._vbSearchCurated || state.queue) :
+                   listType === "searchLive" ? (window._vbSearchLive || state.queue) :
+                   listType === "favorites" ? state.favorites : state.queue;
+        var song = list.filter(function(s) { return s.id === id; })[0];
+        if (!song) return;
+        var exists = state.favorites.some(function(f) { return f.id === id; });
+        state.favorites = exists ? state.favorites.filter(function(f) { return f.id !== id; }) : [song].concat(state.favorites);
+        saveJson(FAVS_KEY, state.favorites);
+        renderStage();
+        updatePlayerBarUI();
+      },
+      saveQueueFromInput: function(e) {
+        e.preventDefault();
+        var inp = document.getElementById("vb-save-name");
+        var name = inp ? inp.value.trim() : "";
+        if (!name || state.queue.length === 0) return;
+        state.customPlaylists = [{ id: "pl-" + Date.now(), name: name, songs: state.queue.slice(), createdAt: new Date().toISOString() }].concat(state.customPlaylists);
+        saveJson(PLAYLISTS_KEY, state.customPlaylists);
+        renderStage();
+      },
+      playSavedPlaylist: function(id) {
+        var pl = state.customPlaylists.filter(function(p) { return p.id === id; })[0];
+        if (!pl || pl.songs.length === 0) return;
+        state.queue = pl.songs.slice();
+        state.currentIndex = 0;
+        state.activeCollectionTitle = pl.name;
+        startSongInternal(pl.songs[0]);
+      },
+      deleteSavedPlaylist: function(id) {
+        state.customPlaylists = state.customPlaylists.filter(function(p) { return p.id !== id; });
+        saveJson(PLAYLISTS_KEY, state.customPlaylists);
+        renderStage();
+      },
+      addCustomAudioUrl: function(e) {
+        e.preventDefault();
+        var tEl = document.getElementById("vb-custom-title");
+        var uEl = document.getElementById("vb-custom-url");
+        var url = uEl ? uEl.value.trim() : "";
+        if (!url) return;
+        var title = (tEl && tEl.value.trim()) || "Custom Authorized Stream";
+        var song = {
+          id: "ext-" + Date.now(),
+          title: title,
+          artist: "External Authorized Stream",
+          album: "Custom Audio",
+          releaseYear: new Date().getFullYear(),
+          genre: "Audio Stream",
+          language: "Custom",
+          moods: [], categories: [], sets: [],
+          artworkUrl: "",
+          durationSec: 180,
+          sources: { itunesPreview: { previewUrl: url, officialUrl: url } }
+        };
+        state.queue.splice(state.currentIndex + 1, 0, song);
+        if (tEl) tEl.value = "";
+        if (uEl) uEl.value = "";
+        state.currentIndex = state.currentIndex + 1;
+        startSongInternal(song, "preview-crossfade", state.isPlaying);
+      },
+      onSearchInput: function(val) {
+        state.searchQuery = val;
+        if (searchTimer) window.clearTimeout(searchTimer);
+        renderStage();
+        var trimmed = val.trim();
+        if (!trimmed) { state.liveSearchResults = []; state.searchLoading = false; return; }
+        state.searchLoading = true;
+        searchTimer = window.setTimeout(function() {
+          var old = document.getElementById("vb-itunes-jsonp");
+          if (old) old.remove();
+          var sc = document.createElement("script");
+          sc.id = "vb-itunes-jsonp";
+          sc.src = "https://itunes.apple.com/search?term=" + encodeURIComponent(trimmed) + "&media=music&entity=song&limit=12&callback=_vbJsonpSearch";
+          document.head.appendChild(sc);
+        }, 320);
+      }
+    };
+
+    renderStage();
+    updatePlayerBarUI();
+    startVisualizerLoop();
+    enhanceBlogPostAudio();
+  })();
+  //]]>
+  </script>
+</body>
+</html>
